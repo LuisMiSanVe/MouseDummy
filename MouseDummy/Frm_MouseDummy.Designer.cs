@@ -28,11 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             grpbx_points = new GroupBox();
+            btn_playLoop = new Button();
             btn_playSecuence = new Button();
             cmbbx_savedSecuences = new ComboBox();
             lstbx_points = new ListBox();
             grpbx_pointSelector = new GroupBox();
+            btn_copy = new Button();
+            btn_delete = new Button();
             btn_trackMousePos = new Button();
             btn_add = new Button();
             lbl_y = new Label();
@@ -40,6 +44,12 @@
             txtbx_x = new TextBox();
             txtbx_y = new TextBox();
             grpbx_action = new GroupBox();
+            rdbtn_tripleClick = new RadioButton();
+            rdbtn_doubleClick = new RadioButton();
+            rdbtn_singleClick = new RadioButton();
+            lbl_gradualSpeed = new Label();
+            nmrupdwn_gradualSpeed = new NumericUpDown();
+            button1 = new Button();
             btn_moveInstant = new Button();
             btn_scrollDown = new Button();
             btn_scrollUp = new Button();
@@ -49,80 +59,130 @@
             lbl_scroll = new Label();
             lbl_click = new Label();
             lbl_move = new Label();
+            tmr_checkCoords = new System.Windows.Forms.Timer(components);
+            tltp_help = new ToolTip(components);
             grpbx_points.SuspendLayout();
             grpbx_pointSelector.SuspendLayout();
             grpbx_action.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nmrupdwn_gradualSpeed).BeginInit();
             SuspendLayout();
             // 
             // grpbx_points
             // 
+            grpbx_points.Controls.Add(btn_playLoop);
             grpbx_points.Controls.Add(btn_playSecuence);
             grpbx_points.Controls.Add(cmbbx_savedSecuences);
             grpbx_points.Controls.Add(lstbx_points);
-            grpbx_points.Location = new Point(12, 12);
+            grpbx_points.Location = new Point(17, 20);
+            grpbx_points.Margin = new Padding(4, 5, 4, 5);
             grpbx_points.Name = "grpbx_points";
-            grpbx_points.Size = new Size(277, 289);
+            grpbx_points.Padding = new Padding(4, 5, 4, 5);
+            grpbx_points.Size = new Size(396, 482);
             grpbx_points.TabIndex = 0;
             grpbx_points.TabStop = false;
             grpbx_points.Text = "Points";
             // 
+            // btn_playLoop
+            // 
+            btn_playLoop.Location = new Point(344, 36);
+            btn_playLoop.Margin = new Padding(4, 5, 4, 5);
+            btn_playLoop.Name = "btn_playLoop";
+            btn_playLoop.Size = new Size(23, 23);
+            btn_playLoop.TabIndex = 3;
+            tltp_help.SetToolTip(btn_playLoop, "Play Looped Secuence");
+            btn_playLoop.UseVisualStyleBackColor = true;
+            btn_playLoop.Click += btn_playLoop_Click;
+            // 
             // btn_playSecuence
             // 
-            btn_playSecuence.Location = new Point(233, 19);
+            btn_playSecuence.Location = new Point(311, 36);
+            btn_playSecuence.Margin = new Padding(4, 5, 4, 5);
             btn_playSecuence.Name = "btn_playSecuence";
-            btn_playSecuence.Size = new Size(25, 25);
+            btn_playSecuence.Size = new Size(23, 23);
             btn_playSecuence.TabIndex = 2;
+            tltp_help.SetToolTip(btn_playSecuence, "Play Secuence");
             btn_playSecuence.UseVisualStyleBackColor = true;
+            btn_playSecuence.Click += btn_playSecuence_Click;
             // 
             // cmbbx_savedSecuences
             // 
             cmbbx_savedSecuences.FormattingEnabled = true;
             cmbbx_savedSecuences.Items.AddRange(new object[] { "+ Save the current secuence..." });
-            cmbbx_savedSecuences.Location = new Point(16, 19);
+            cmbbx_savedSecuences.Location = new Point(23, 32);
+            cmbbx_savedSecuences.Margin = new Padding(4, 5, 4, 5);
             cmbbx_savedSecuences.Name = "cmbbx_savedSecuences";
-            cmbbx_savedSecuences.Size = new Size(211, 23);
+            cmbbx_savedSecuences.Size = new Size(280, 33);
             cmbbx_savedSecuences.TabIndex = 1;
             cmbbx_savedSecuences.SelectedIndexChanged += cmbbx_savedSecuences_SelectedIndexChanged;
             // 
             // lstbx_points
             // 
             lstbx_points.FormattingEnabled = true;
-            lstbx_points.ItemHeight = 15;
-            lstbx_points.Location = new Point(16, 48);
+            lstbx_points.ItemHeight = 25;
+            lstbx_points.Location = new Point(23, 80);
+            lstbx_points.Margin = new Padding(4, 5, 4, 5);
             lstbx_points.Name = "lstbx_points";
-            lstbx_points.Size = new Size(242, 229);
+            lstbx_points.Size = new Size(344, 379);
             lstbx_points.TabIndex = 0;
             // 
             // grpbx_pointSelector
             // 
+            grpbx_pointSelector.Controls.Add(btn_copy);
+            grpbx_pointSelector.Controls.Add(btn_delete);
             grpbx_pointSelector.Controls.Add(btn_trackMousePos);
             grpbx_pointSelector.Controls.Add(btn_add);
             grpbx_pointSelector.Controls.Add(lbl_y);
             grpbx_pointSelector.Controls.Add(lbl_x);
             grpbx_pointSelector.Controls.Add(txtbx_x);
             grpbx_pointSelector.Controls.Add(txtbx_y);
-            grpbx_pointSelector.Location = new Point(295, 12);
+            grpbx_pointSelector.Location = new Point(421, 20);
+            grpbx_pointSelector.Margin = new Padding(4, 5, 4, 5);
             grpbx_pointSelector.Name = "grpbx_pointSelector";
-            grpbx_pointSelector.Size = new Size(291, 100);
+            grpbx_pointSelector.Padding = new Padding(4, 5, 4, 5);
+            grpbx_pointSelector.Size = new Size(416, 167);
             grpbx_pointSelector.TabIndex = 1;
             grpbx_pointSelector.TabStop = false;
             grpbx_pointSelector.Text = "Point Select";
             // 
+            // btn_copy
+            // 
+            btn_copy.Location = new Point(214, 97);
+            btn_copy.Margin = new Padding(4, 5, 4, 5);
+            btn_copy.Name = "btn_copy";
+            btn_copy.Size = new Size(91, 38);
+            btn_copy.TabIndex = 7;
+            btn_copy.Text = "Copy";
+            btn_copy.UseVisualStyleBackColor = true;
+            btn_copy.Click += btn_copy_Click;
+            // 
+            // btn_delete
+            // 
+            btn_delete.Location = new Point(313, 97);
+            btn_delete.Margin = new Padding(4, 5, 4, 5);
+            btn_delete.Name = "btn_delete";
+            btn_delete.Size = new Size(91, 38);
+            btn_delete.TabIndex = 6;
+            btn_delete.Text = "Delete";
+            btn_delete.UseVisualStyleBackColor = true;
+            btn_delete.Click += btn_delete_Click;
+            // 
             // btn_trackMousePos
             // 
-            btn_trackMousePos.Location = new Point(14, 58);
+            btn_trackMousePos.Location = new Point(16, 97);
+            btn_trackMousePos.Margin = new Padding(4, 5, 4, 5);
             btn_trackMousePos.Name = "btn_trackMousePos";
-            btn_trackMousePos.Size = new Size(130, 23);
+            btn_trackMousePos.Size = new Size(91, 38);
             btn_trackMousePos.TabIndex = 5;
-            btn_trackMousePos.Text = "Track Mouse Position";
+            btn_trackMousePos.Text = "Track";
             btn_trackMousePos.UseVisualStyleBackColor = true;
             btn_trackMousePos.Click += btn_trackMousePos_Click;
             // 
             // btn_add
             // 
-            btn_add.Location = new Point(150, 58);
+            btn_add.Location = new Point(115, 97);
+            btn_add.Margin = new Padding(4, 5, 4, 5);
             btn_add.Name = "btn_add";
-            btn_add.Size = new Size(130, 23);
+            btn_add.Size = new Size(91, 38);
             btn_add.TabIndex = 4;
             btn_add.Text = "Add (N)";
             btn_add.UseVisualStyleBackColor = true;
@@ -131,37 +191,47 @@
             // lbl_y
             // 
             lbl_y.AutoSize = true;
-            lbl_y.Location = new Point(150, 23);
+            lbl_y.Location = new Point(214, 38);
+            lbl_y.Margin = new Padding(4, 0, 4, 0);
             lbl_y.Name = "lbl_y";
-            lbl_y.Size = new Size(17, 15);
+            lbl_y.Size = new Size(26, 25);
             lbl_y.TabIndex = 3;
             lbl_y.Text = "Y:";
             // 
             // lbl_x
             // 
             lbl_x.AutoSize = true;
-            lbl_x.Location = new Point(14, 23);
+            lbl_x.Location = new Point(20, 38);
+            lbl_x.Margin = new Padding(4, 0, 4, 0);
             lbl_x.Name = "lbl_x";
-            lbl_x.Size = new Size(17, 15);
+            lbl_x.Size = new Size(27, 25);
             lbl_x.TabIndex = 2;
             lbl_x.Text = "X:";
             // 
             // txtbx_x
             // 
-            txtbx_x.Location = new Point(37, 20);
+            txtbx_x.Location = new Point(53, 33);
+            txtbx_x.Margin = new Padding(4, 5, 4, 5);
             txtbx_x.Name = "txtbx_x";
-            txtbx_x.Size = new Size(107, 23);
+            txtbx_x.Size = new Size(151, 31);
             txtbx_x.TabIndex = 1;
             // 
             // txtbx_y
             // 
-            txtbx_y.Location = new Point(173, 20);
+            txtbx_y.Location = new Point(247, 33);
+            txtbx_y.Margin = new Padding(4, 5, 4, 5);
             txtbx_y.Name = "txtbx_y";
-            txtbx_y.Size = new Size(107, 23);
+            txtbx_y.Size = new Size(151, 31);
             txtbx_y.TabIndex = 0;
             // 
             // grpbx_action
             // 
+            grpbx_action.Controls.Add(rdbtn_tripleClick);
+            grpbx_action.Controls.Add(rdbtn_doubleClick);
+            grpbx_action.Controls.Add(rdbtn_singleClick);
+            grpbx_action.Controls.Add(lbl_gradualSpeed);
+            grpbx_action.Controls.Add(nmrupdwn_gradualSpeed);
+            grpbx_action.Controls.Add(button1);
             grpbx_action.Controls.Add(btn_moveInstant);
             grpbx_action.Controls.Add(btn_scrollDown);
             grpbx_action.Controls.Add(btn_scrollUp);
@@ -171,69 +241,147 @@
             grpbx_action.Controls.Add(lbl_scroll);
             grpbx_action.Controls.Add(lbl_click);
             grpbx_action.Controls.Add(lbl_move);
-            grpbx_action.Location = new Point(295, 118);
+            grpbx_action.Location = new Point(421, 197);
+            grpbx_action.Margin = new Padding(4, 5, 4, 5);
             grpbx_action.Name = "grpbx_action";
-            grpbx_action.Size = new Size(291, 183);
+            grpbx_action.Padding = new Padding(4, 5, 4, 5);
+            grpbx_action.Size = new Size(416, 305);
             grpbx_action.TabIndex = 2;
             grpbx_action.TabStop = false;
             grpbx_action.Text = "Actions";
             // 
+            // rdbtn_tripleClick
+            // 
+            rdbtn_tripleClick.AutoSize = true;
+            rdbtn_tripleClick.Location = new Point(326, 186);
+            rdbtn_tripleClick.Name = "rdbtn_tripleClick";
+            rdbtn_tripleClick.Size = new Size(78, 29);
+            rdbtn_tripleClick.TabIndex = 14;
+            rdbtn_tripleClick.Text = "Triple";
+            rdbtn_tripleClick.UseVisualStyleBackColor = true;
+            rdbtn_tripleClick.CheckedChanged += rdbtn_Click_CheckedChanged;
+            // 
+            // rdbtn_doubleClick
+            // 
+            rdbtn_doubleClick.AutoSize = true;
+            rdbtn_doubleClick.Location = new Point(225, 186);
+            rdbtn_doubleClick.Name = "rdbtn_doubleClick";
+            rdbtn_doubleClick.Size = new Size(95, 29);
+            rdbtn_doubleClick.TabIndex = 13;
+            rdbtn_doubleClick.Text = "Double";
+            rdbtn_doubleClick.UseVisualStyleBackColor = true;
+            rdbtn_doubleClick.CheckedChanged += rdbtn_Click_CheckedChanged;
+            // 
+            // rdbtn_singleClick
+            // 
+            rdbtn_singleClick.AutoSize = true;
+            rdbtn_singleClick.Checked = true;
+            rdbtn_singleClick.Location = new Point(134, 186);
+            rdbtn_singleClick.Name = "rdbtn_singleClick";
+            rdbtn_singleClick.Size = new Size(85, 29);
+            rdbtn_singleClick.TabIndex = 12;
+            rdbtn_singleClick.TabStop = true;
+            rdbtn_singleClick.Text = "Single";
+            rdbtn_singleClick.UseVisualStyleBackColor = true;
+            rdbtn_singleClick.CheckedChanged += rdbtn_Click_CheckedChanged;
+            // 
+            // lbl_gradualSpeed
+            // 
+            lbl_gradualSpeed.AutoSize = true;
+            lbl_gradualSpeed.Location = new Point(215, 88);
+            lbl_gradualSpeed.Margin = new Padding(4, 0, 4, 0);
+            lbl_gradualSpeed.Name = "lbl_gradualSpeed";
+            lbl_gradualSpeed.Size = new Size(132, 25);
+            lbl_gradualSpeed.TabIndex = 11;
+            lbl_gradualSpeed.Text = "Gradual Speed:";
+            // 
+            // nmrupdwn_gradualSpeed
+            // 
+            nmrupdwn_gradualSpeed.Location = new Point(354, 86);
+            nmrupdwn_gradualSpeed.Name = "nmrupdwn_gradualSpeed";
+            nmrupdwn_gradualSpeed.Size = new Size(44, 31);
+            nmrupdwn_gradualSpeed.TabIndex = 10;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(225, 140);
+            button1.Margin = new Padding(4, 5, 4, 5);
+            button1.Name = "button1";
+            button1.Size = new Size(80, 38);
+            button1.TabIndex = 9;
+            button1.Tag = "Click";
+            button1.Text = "Middle";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += btn_action_Click;
+            // 
             // btn_moveInstant
             // 
-            btn_moveInstant.Location = new Point(205, 24);
+            btn_moveInstant.Location = new Point(131, 40);
+            btn_moveInstant.Margin = new Padding(4, 5, 4, 5);
             btn_moveInstant.Name = "btn_moveInstant";
-            btn_moveInstant.Size = new Size(75, 23);
+            btn_moveInstant.Size = new Size(107, 38);
             btn_moveInstant.TabIndex = 8;
+            btn_moveInstant.Tag = "Move";
             btn_moveInstant.Text = "Instant";
             btn_moveInstant.UseVisualStyleBackColor = true;
             btn_moveInstant.Click += btn_action_Click;
             // 
             // btn_scrollDown
             // 
-            btn_scrollDown.Location = new Point(205, 141);
+            btn_scrollDown.Location = new Point(293, 235);
+            btn_scrollDown.Margin = new Padding(4, 5, 4, 5);
             btn_scrollDown.Name = "btn_scrollDown";
-            btn_scrollDown.Size = new Size(75, 23);
+            btn_scrollDown.Size = new Size(107, 38);
             btn_scrollDown.TabIndex = 7;
+            btn_scrollDown.Tag = "Scroll";
             btn_scrollDown.Text = "Down";
             btn_scrollDown.UseVisualStyleBackColor = true;
             btn_scrollDown.Click += btn_action_Click;
             // 
             // btn_scrollUp
             // 
-            btn_scrollUp.Location = new Point(92, 141);
+            btn_scrollUp.Location = new Point(131, 235);
+            btn_scrollUp.Margin = new Padding(4, 5, 4, 5);
             btn_scrollUp.Name = "btn_scrollUp";
-            btn_scrollUp.Size = new Size(75, 23);
+            btn_scrollUp.Size = new Size(107, 38);
             btn_scrollUp.TabIndex = 6;
+            btn_scrollUp.Tag = "Scroll";
             btn_scrollUp.Text = "Up";
             btn_scrollUp.UseVisualStyleBackColor = true;
             btn_scrollUp.Click += btn_action_Click;
             // 
             // btn_clickRight
             // 
-            btn_clickRight.Location = new Point(205, 84);
+            btn_clickRight.Location = new Point(320, 140);
+            btn_clickRight.Margin = new Padding(4, 5, 4, 5);
             btn_clickRight.Name = "btn_clickRight";
-            btn_clickRight.Size = new Size(75, 23);
+            btn_clickRight.Size = new Size(80, 38);
             btn_clickRight.TabIndex = 5;
+            btn_clickRight.Tag = "Click";
             btn_clickRight.Text = "Right";
             btn_clickRight.UseVisualStyleBackColor = true;
             btn_clickRight.Click += btn_action_Click;
             // 
             // btn_clickLeft
             // 
-            btn_clickLeft.Location = new Point(92, 84);
+            btn_clickLeft.Location = new Point(131, 140);
+            btn_clickLeft.Margin = new Padding(4, 5, 4, 5);
             btn_clickLeft.Name = "btn_clickLeft";
-            btn_clickLeft.Size = new Size(75, 23);
+            btn_clickLeft.Size = new Size(80, 38);
             btn_clickLeft.TabIndex = 4;
+            btn_clickLeft.Tag = "Click";
             btn_clickLeft.Text = "Left";
             btn_clickLeft.UseVisualStyleBackColor = true;
             btn_clickLeft.Click += btn_action_Click;
             // 
             // btn_moveGradual
             // 
-            btn_moveGradual.Location = new Point(92, 24);
+            btn_moveGradual.Location = new Point(293, 40);
+            btn_moveGradual.Margin = new Padding(4, 5, 4, 5);
             btn_moveGradual.Name = "btn_moveGradual";
-            btn_moveGradual.Size = new Size(75, 23);
+            btn_moveGradual.Size = new Size(107, 38);
             btn_moveGradual.TabIndex = 3;
+            btn_moveGradual.Tag = "Move";
             btn_moveGradual.Text = "Gradual";
             btn_moveGradual.UseVisualStyleBackColor = true;
             btn_moveGradual.Click += btn_action_Click;
@@ -241,46 +389,57 @@
             // lbl_scroll
             // 
             lbl_scroll.AutoSize = true;
-            lbl_scroll.Location = new Point(15, 145);
+            lbl_scroll.Location = new Point(21, 242);
+            lbl_scroll.Margin = new Padding(4, 0, 4, 0);
             lbl_scroll.Name = "lbl_scroll";
-            lbl_scroll.Size = new Size(39, 15);
+            lbl_scroll.Size = new Size(59, 25);
             lbl_scroll.TabIndex = 2;
             lbl_scroll.Text = "Scroll:";
             // 
             // lbl_click
             // 
             lbl_click.AutoSize = true;
-            lbl_click.Location = new Point(14, 88);
+            lbl_click.Location = new Point(20, 147);
+            lbl_click.Margin = new Padding(4, 0, 4, 0);
             lbl_click.Name = "lbl_click";
-            lbl_click.Size = new Size(36, 15);
+            lbl_click.Size = new Size(52, 25);
             lbl_click.TabIndex = 1;
             lbl_click.Text = "Click:";
             // 
             // lbl_move
             // 
             lbl_move.AutoSize = true;
-            lbl_move.Location = new Point(14, 28);
+            lbl_move.Location = new Point(20, 47);
+            lbl_move.Margin = new Padding(4, 0, 4, 0);
             lbl_move.Name = "lbl_move";
-            lbl_move.Size = new Size(40, 15);
+            lbl_move.Size = new Size(61, 25);
             lbl_move.TabIndex = 0;
             lbl_move.Text = "Move:";
             // 
+            // tmr_checkCoords
+            // 
+            tmr_checkCoords.Tick += tmr_checkCoords_Tick;
+            // 
             // Frm_MouseDummy
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(599, 310);
+            ClientSize = new Size(856, 517);
             Controls.Add(grpbx_action);
             Controls.Add(grpbx_pointSelector);
             Controls.Add(grpbx_points);
+            KeyPreview = true;
+            Margin = new Padding(4, 5, 4, 5);
             Name = "Frm_MouseDummy";
             Text = "Mouse Dummy";
             Load += Frm_MouseDummy_Load;
+            KeyDown += Frm_MouseDummy_KeyDown;
             grpbx_points.ResumeLayout(false);
             grpbx_pointSelector.ResumeLayout(false);
             grpbx_pointSelector.PerformLayout();
             grpbx_action.ResumeLayout(false);
             grpbx_action.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nmrupdwn_gradualSpeed).EndInit();
             ResumeLayout(false);
         }
 
@@ -307,5 +466,16 @@
         private Button btn_moveInstant;
         private Label lbl_move;
         private Button btn_playSecuence;
+        private System.Windows.Forms.Timer tmr_checkCoords;
+        private Button btn_playLoop;
+        private ToolTip tltp_help;
+        private Button btn_copy;
+        private Button btn_delete;
+        private Button button1;
+        private NumericUpDown nmrupdwn_gradualSpeed;
+        private RadioButton rdbtn_doubleClick;
+        private RadioButton rdbtn_singleClick;
+        private Label lbl_gradualSpeed;
+        private RadioButton rdbtn_tripleClick;
     }
 }
