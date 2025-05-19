@@ -10,12 +10,14 @@ Programa de WinForms que te deja configurar el movimiento del ratón y reproduci
 Uso la librería DLL `user32.dll` como una API de Windows para usar los métodos ya definidos del movimiento del ratón.
 
 ## ⚙️ Explicación de uso del proyecto
-Presional el botón de `Grabar Puntos` y sin perder el foco del programa, mueve el ratón a las coordenadas que quieras, presiona `N` para guardarlo en la lista de Puntos, entonces asignale una acción al punto desde la lista de Acciones.
+Presional el botón de `Reastrear` y sin perder el foco del programa, mueve el ratón a las coordenadas que quieras, presiona `N` para guardarlo en la lista de Puntos, entonces asignale una acción al punto desde la lista de Acciones.
 
 Puedes guardar la secuencia y reproducirla cuando quieras seleccionandolo en el *combo box*.
 
 ## 📂 Archivos
-Al presionar el botón de `Guardar`, un archivo con la secuencia de puntos se guardará en tu equipo internamente.
+Al presionar el botón de `Guardar` dentro del *combo box*, un archivo con la secuencia de puntos se guardará en tu equipo internamente.
+
+El nombre del archivo se cerará automaticamente por un método que resume las acciones de la secuencia.
 
 ## 🚀 Lanzamientos
 Una versión será lanzada solo cuando se cumplan los siguientes puntos:\
