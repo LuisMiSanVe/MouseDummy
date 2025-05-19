@@ -32,7 +32,7 @@
             grpbx_points = new GroupBox();
             btn_playLoop = new Button();
             btn_playSecuence = new Button();
-            cmbbx_savedSecuences = new ComboBox();
+            cmbbx_savedSequences = new ComboBox();
             lstbx_points = new ListBox();
             grpbx_pointSelector = new GroupBox();
             btn_copy = new Button();
@@ -71,7 +71,7 @@
             // 
             grpbx_points.Controls.Add(btn_playLoop);
             grpbx_points.Controls.Add(btn_playSecuence);
-            grpbx_points.Controls.Add(cmbbx_savedSecuences);
+            grpbx_points.Controls.Add(cmbbx_savedSequences);
             grpbx_points.Controls.Add(lstbx_points);
             grpbx_points.Location = new Point(17, 20);
             grpbx_points.Margin = new Padding(4, 5, 4, 5);
@@ -104,16 +104,16 @@
             btn_playSecuence.UseVisualStyleBackColor = true;
             btn_playSecuence.Click += btn_playSecuence_Click;
             // 
-            // cmbbx_savedSecuences
+            // cmbbx_savedSequences
             // 
-            cmbbx_savedSecuences.FormattingEnabled = true;
-            cmbbx_savedSecuences.Items.AddRange(new object[] { "+ Save the current secuence..." });
-            cmbbx_savedSecuences.Location = new Point(23, 32);
-            cmbbx_savedSecuences.Margin = new Padding(4, 5, 4, 5);
-            cmbbx_savedSecuences.Name = "cmbbx_savedSecuences";
-            cmbbx_savedSecuences.Size = new Size(280, 33);
-            cmbbx_savedSecuences.TabIndex = 1;
-            cmbbx_savedSecuences.SelectedIndexChanged += cmbbx_savedSecuences_SelectedIndexChanged;
+            cmbbx_savedSequences.FormattingEnabled = true;
+            cmbbx_savedSequences.Items.AddRange(new object[] { "+ Save the current sequence...", "+ New sequence...", "----------------------------------" });
+            cmbbx_savedSequences.Location = new Point(23, 32);
+            cmbbx_savedSequences.Margin = new Padding(4, 5, 4, 5);
+            cmbbx_savedSequences.Name = "cmbbx_savedSequences";
+            cmbbx_savedSequences.Size = new Size(280, 33);
+            cmbbx_savedSequences.TabIndex = 1;
+            cmbbx_savedSequences.SelectedIndexChanged += cmbbx_savedSequences_SelectedIndexChanged;
             // 
             // lstbx_points
             // 
@@ -455,7 +455,7 @@
         private Button btn_trackMousePos;
         private Button btn_add;
         private Label lbl_y;
-        private ComboBox cmbbx_savedSecuences;
+        private ComboBox cmbbx_savedSequences;
         private Label lbl_click;
         private Button btn_scrollDown;
         private Button btn_scrollUp;

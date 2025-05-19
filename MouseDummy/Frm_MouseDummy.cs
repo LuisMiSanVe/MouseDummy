@@ -30,7 +30,7 @@ namespace MouseDummy
         private int clickType = 1;
         private void Frm_MouseDummy_Load(object sender, EventArgs e)
         {
-
+            // Load the saved sequences in the ComboBox
         }
 
         private void btn_trackMousePos_Click(object sender, EventArgs e)
@@ -47,11 +47,6 @@ namespace MouseDummy
             // Clear the X and Y fields
             txtbx_x.Text = "";
             txtbx_y.Text = "";
-        }
-
-        private void cmbbx_savedSecuences_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btn_action_Click(object sender, EventArgs e)
@@ -83,7 +78,7 @@ namespace MouseDummy
 
         private void btn_playLoop_Click(object sender, EventArgs e)
         {
-
+            // Play in loop
         }
 
         private void btn_playSecuence_Click(object sender, EventArgs e)
@@ -171,7 +166,8 @@ namespace MouseDummy
 
         private void rdbtn_Click_CheckedChanged(object sender, EventArgs e)
         {
-            switch (((RadioButton)sender).Text) {
+            switch (((RadioButton)sender).Text)
+            {
                 case "Single":
                     clickType = 1;
                     break;
@@ -185,6 +181,59 @@ namespace MouseDummy
                     MessageBox.Show("An error occurred at choosing the Click Type (" + ((RadioButton)sender).Text + ")", "Error setting the click type", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
+        }
+
+        private void cmbbx_savedSequences_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbbx_savedSequences.Items[cmbbx_savedSequences.SelectedIndex].ToString().Contains("+ Save") && lstbx_points.Items.Count > 0)
+            {
+                // Create the sequence's name by summarizing the content of the actions
+                string sequenceName = cmbbx_savedSequences.Items.Count - 2 + "-";
+                string[] actions = { "Move", "Right", "Middle", "Left", "Up", "Down" };
+                for (int i = 0; i < lstbx_points.Items.Count; i++)
+                {
+                    switch (lstbx_points.Items[i])
+                    {
+                        case string a when a.Contains("Move"):
+                            sequenceName += "Mv";
+                            break;
+                        case string b when b.Contains("Right"):
+                            sequenceName += "Rgt";
+                            break;
+                        case string c when c.Contains("Middle"):
+                            sequenceName += "Mdl";
+                            break;
+                        case string d when d.Contains("Left"):
+                            sequenceName += "Lft";
+                            break;
+                        case string f when f.Contains("Up"):
+                            sequenceName += "Up";
+                            break;
+                        case string h when h.Contains("Down"):
+                            sequenceName += "Dwn";
+                            break;
+                        default:
+                            sequenceName += "NoAct";
+                            break;
+                    }
+                }
+
+                // Save in a file
+            }
+            else if (cmbbx_savedSequences.Items[cmbbx_savedSequences.SelectedIndex].ToString().Contains("+ New"))
+            {
+                // Clear the current points
+                lstbx_points.Items.Clear();
+            }
+            else if (cmbbx_savedSequences.Items[cmbbx_savedSequences.SelectedIndex].ToString().Contains("------"))
+            {
+                // Does nothing as only serves as separator between options and actual saved sequences
+            }
+            else
+            {
+                // Load from the file
+            }
+            cmbbx_savedSequences.SelectedText = "";
         }
     }
 }
