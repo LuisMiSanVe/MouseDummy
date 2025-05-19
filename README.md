@@ -10,12 +10,14 @@ WinForms program that lets you configure the mouse's movement and reproduce them
 I use the DLL librabry `user32.dll` as a Windows API to use the prebuilt mouse movement methods.
 
 ## ⚙️ Project Usage Explanation
-Press the `Record Points` button and without losing the focus on the program, move the mouse to the desired coordinates, press `N` to save it into the Points list, then link the point to the action desired on the Action list.
+Press the `Track` button and without losing the focus on the program, move the mouse to the desired coordinates, press `N` to save them into the Points list, then link the point to the action desired on the Action list.
 
 You can save a secuence and reproduce it anytime selecting it on the *combo box*.
 
 ## 📂 Files
-By pressing the `Save` button, a file with the point secuence will be saved internally in your drive.
+By pressing the `Save` button in the *combo box*, a file with the point secuence will be saved internally in your drive.
+
+The name of the file will be automaticly created by a method that summarizes the actions of the sequence.
 
 ## 🚀 Releases
 The version will be released using these versioning policies:\
