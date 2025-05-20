@@ -6,6 +6,8 @@
 
 Programa de WinForms que te deja configurar el movimiento del ratón y reproducirlo en cualquier momento.
 
+Aunque tenga un concepto parecido, este programa no está pensando para usarse como *autoclicker* (aunque es posible hacerlo), principalmente su proposito es controlar el cursor de forma automática usando secuencias de todas las acciones posibles que tiene un ratón estándar.
+
 ## 📝 Explicación de Tecnología
 Uso la librería DLL `user32.dll` como una API de Windows para usar los métodos ya definidos del movimiento del ratón.
 
