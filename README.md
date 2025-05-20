@@ -1,5 +1,5 @@
 > [See in spanish/Ver en español](https://github.com/LuisMiSanVe/MouseDummy/blob/main/README.es.md)
-# 🖱️ Mouse Dummy
+#  <img src="https://github.com/LuisMiSanVe/MouseDummy/blob/main/MouseDummy/Resources/icon.ico" width=35 height=35 alt="🖱️"> Mouse Dummy
 [![image](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=csharp&logoColor=white)](https://dotnet.microsoft.com/en-us/languages/csharp)
 [![image](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)](https://dotnet.microsoft.com/en-us/learn/dotnet/what-is-dotnet)
 [![image](https://img.shields.io/badge/Visual_Studio-5C2D91?style=for-the-badge&logo=visual%20studio&logoColor=white)](https://visualstudio.microsoft.com/)
@@ -34,4 +34,6 @@ The version number will follow this format: \
 - Programming Language: [C#](https://dotnet.microsoft.com/en-us/languages/csharp) 
 - Framework: [.Net](https://dotnet.microsoft.com/en-us/learn/dotnet/what-is-dotnet)
 - Libraries: user32.dll
+- Other:
+  - [ChatGPT](https://chatgpt.com/) (icon)
 - Recommended IDE: [Visual Studio](https://visualstudio.microsoft.com/)
