@@ -1,5 +1,5 @@
 > [Ver en ingles/See in english](https://github.com/LuisMiSanVe/MouseDummy/blob/main/README.md)
-# 🖱️ Simulador del Ratón
+# <img src="https://github.com/LuisMiSanVe/MouseDummy/blob/main/MouseDummy/Resources/icon.ico" width=35 height=35 alt="🖱️"> Simulador del Ratón
 [![image](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=csharp&logoColor=white)](https://dotnet.microsoft.com/en-us/languages/csharp)
 [![image](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)](https://dotnet.microsoft.com/en-us/learn/dotnet/what-is-dotnet)
 [![image](https://img.shields.io/badge/Visual_Studio-5C2D91?style=for-the-badge&logo=visual%20studio&logoColor=white)](https://visualstudio.microsoft.com/)
@@ -34,4 +34,6 @@ El número de la versión seguirá este formato: \
 - Lenguaje de programación: [C#](https://dotnet.microsoft.com/en-us/languages/csharp) 
 - Framework: [.Net](https://dotnet.microsoft.com/en-us/learn/dotnet/what-is-dotnet)
 - Librerías: user32.dll
+- Otros:
+  - [ChatGPT](https://chatgpt.com/) (icono)
 - IDE Recomendado: [Visual Studio](https://visualstudio.microsoft.com/)
