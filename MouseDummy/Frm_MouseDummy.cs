@@ -95,29 +95,39 @@ namespace MouseDummy
                 // Cancel sequence
 
                 // Restore the window
-                this.Show();
+                grpbx_points.Enabled = true;
+                grpbx_action.Enabled = true;
+                grpbx_pointSelector.Enabled = true;
             }
         }
 
         private void btn_playLoop_Click(object sender, EventArgs e)
         {
             // Hide the window
-            this.Hide();
+            grpbx_action.Enabled = false;
+            grpbx_pointSelector.Enabled = false;
+            btn_playSequence.BackgroundImage = imglst_play.Images[1];
             // Play in loop
 
             // Restore the window
-            this.Show();
+            grpbx_action.Enabled = true;
+            grpbx_pointSelector.Enabled = true;
+            btn_playSequence.BackgroundImage = imglst_play.Images[0];
         }
 
         private void btn_playSequence_Click(object sender, EventArgs e)
         {
             // Hide the window
-            this.Hide();
+            grpbx_action.Enabled = false;
+            grpbx_pointSelector.Enabled = false;
+            btn_playSequence.BackgroundImage = imglst_play.Images[1];
             // Run the sequence
             for (int i = 0; i < lstbx_points.Items.Count; i++)
             {
                 // Extract info from action
                 string action = lstbx_points.Items[i].ToString().Split(":")[1].Trim().Split(" ")[0];
+                if (action.Contains("Click"))
+                    action = action.Split("-")[1];
                 string type = lstbx_points.Items[i].ToString().Split(":")[1].Trim().Split(" ")[1];
                 int x = int.Parse(lstbx_points.Items[i].ToString().Split("|")[1].Split(":")[0].Split("x")[0].Trim());
                 int y = int.Parse(lstbx_points.Items[i].ToString().Split("|")[1].Split(":")[0].Split("x")[1].Trim());
@@ -186,7 +196,9 @@ namespace MouseDummy
                 Thread.Sleep(actionDelay);
             }
             // Restore the window
-            this.Show();
+            grpbx_action.Enabled = true;
+            grpbx_pointSelector.Enabled = true;
+            btn_playSequence.BackgroundImage = imglst_play.Images[0];
         }
 
         private void btn_delete_Click(object sender, EventArgs e)

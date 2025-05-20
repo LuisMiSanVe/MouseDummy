@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_MouseDummy));
             grpbx_points = new GroupBox();
             nmrupdwn_actionDelay = new NumericUpDown();
             btn_playLoop = new Button();
@@ -62,6 +63,7 @@
             lbl_move = new Label();
             tmr_checkCoords = new System.Windows.Forms.Timer(components);
             tltp_help = new ToolTip(components);
+            imglst_play = new ImageList(components);
             grpbx_points.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nmrupdwn_actionDelay).BeginInit();
             grpbx_pointSelector.SuspendLayout();
@@ -96,6 +98,8 @@
             // 
             // btn_playLoop
             // 
+            btn_playLoop.BackgroundImage = (Image)resources.GetObject("btn_playLoop.BackgroundImage");
+            btn_playLoop.BackgroundImageLayout = ImageLayout.Stretch;
             btn_playLoop.Location = new Point(337, 36);
             btn_playLoop.Margin = new Padding(4, 5, 4, 5);
             btn_playLoop.Name = "btn_playLoop";
@@ -107,6 +111,8 @@
             // 
             // btn_playSequence
             // 
+            btn_playSequence.BackgroundImage = (Image)resources.GetObject("btn_playSequence.BackgroundImage");
+            btn_playSequence.BackgroundImageLayout = ImageLayout.Stretch;
             btn_playSequence.Location = new Point(299, 36);
             btn_playSequence.Margin = new Padding(4, 5, 4, 5);
             btn_playSequence.Name = "btn_playSequence";
@@ -433,6 +439,14 @@
             // 
             tmr_checkCoords.Tick += tmr_checkCoords_Tick;
             // 
+            // imglst_play
+            // 
+            imglst_play.ColorDepth = ColorDepth.Depth32Bit;
+            imglst_play.ImageStream = (ImageListStreamer)resources.GetObject("imglst_play.ImageStream");
+            imglst_play.TransparentColor = Color.Transparent;
+            imglst_play.Images.SetKeyName(0, "buttonStart.png");
+            imglst_play.Images.SetKeyName(1, "buttonStop.png");
+            // 
             // Frm_MouseDummy
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -441,6 +455,7 @@
             Controls.Add(grpbx_action);
             Controls.Add(grpbx_pointSelector);
             Controls.Add(grpbx_points);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
             Margin = new Padding(4, 5, 4, 5);
             Name = "Frm_MouseDummy";
@@ -492,5 +507,6 @@
         private Label lbl_gradualSpeed;
         private RadioButton rdbtn_tripleClick;
         private NumericUpDown nmrupdwn_actionDelay;
+        private ImageList imglst_play;
     }
 }
