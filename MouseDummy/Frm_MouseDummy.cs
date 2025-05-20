@@ -28,6 +28,7 @@ namespace MouseDummy
 
         // MouseDummy Events
         private int clickType = 1;
+        private int actionDelay = 0;
         private void Frm_MouseDummy_Load(object sender, EventArgs e)
         {
             // Load the saved sequences in the ComboBox
@@ -35,7 +36,12 @@ namespace MouseDummy
 
         private void btn_trackMousePos_Click(object sender, EventArgs e)
         {
+            // Enable the tracking Timer
             tmr_checkCoords.Enabled = true;
+            // Disable the window
+            grpbx_points.Enabled = false;
+            grpbx_action.Enabled = false;
+            grpbx_pointSelector.Enabled = false;
         }
 
         private void btn_add_Click(object sender, EventArgs e)
@@ -44,19 +50,33 @@ namespace MouseDummy
             lstbx_points.Items.Add("Point " + (lstbx_points.Items.Count + 1) + " | " + txtbx_x.Text + "x" + txtbx_y.Text + ": No Action Assigned");
             // Disable the mouse tracking
             tmr_checkCoords.Enabled = false;
+            // Enable the window
+            grpbx_points.Enabled = true;
+            grpbx_action.Enabled = true;
+            grpbx_pointSelector.Enabled = true;
             // Clear the X and Y fields
             txtbx_x.Text = "";
             txtbx_y.Text = "";
+            // Disable Gradual Speed by default
+            nmrupdwn_gradualSpeed.Enabled = false;
         }
 
         private void btn_action_Click(object sender, EventArgs e)
         {
+            Button snd = (Button)sender;
             if (lstbx_points.SelectedItem != null)
             {
+                // Asign Action
                 lstbx_points.Items[lstbx_points.SelectedIndex] = lstbx_points.Items[lstbx_points.SelectedIndex].ToString().Split(":")[0] + ": ";
-                if (((Button)sender).Tag.ToString().Contains("Click"))
+                // If it's a click action, add the type
+                if (snd.Tag.ToString().Contains("Click"))
                     lstbx_points.Items[lstbx_points.SelectedIndex] += clickType + "-";
-                lstbx_points.Items[lstbx_points.SelectedIndex] += ((Button)sender).Tag + " " + ((Button)sender).Text;
+                lstbx_points.Items[lstbx_points.SelectedIndex] += snd.Tag + " " + snd.Text;
+                // Enable Gradual speed if you selected Gradual Move
+                if (snd.Text.Contains("Gradual"))
+                    nmrupdwn_gradualSpeed.Enabled = true;
+                else if (snd.Text.Contains("Instant"))
+                    nmrupdwn_gradualSpeed.Enabled = false;
             }
         }
 
@@ -72,19 +92,31 @@ namespace MouseDummy
                 btn_add_Click(null, null);
             else if (e.KeyCode == Keys.C)
             {
-                // Cancel
+                // Cancel sequence
+
+                // Restore the window
+                this.Show();
             }
         }
 
         private void btn_playLoop_Click(object sender, EventArgs e)
         {
+            // Hide the window
+            this.Hide();
             // Play in loop
+
+            // Restore the window
+            this.Show();
         }
 
-        private void btn_playSecuence_Click(object sender, EventArgs e)
+        private void btn_playSequence_Click(object sender, EventArgs e)
         {
+            // Hide the window
+            this.Hide();
+            // Run the sequence
             for (int i = 0; i < lstbx_points.Items.Count; i++)
             {
+                // Extract info from action
                 string action = lstbx_points.Items[i].ToString().Split(":")[1].Trim().Split(" ")[0];
                 string type = lstbx_points.Items[i].ToString().Split(":")[1].Trim().Split(" ")[1];
                 int x = int.Parse(lstbx_points.Items[i].ToString().Split("|")[1].Split(":")[0].Split("x")[0].Trim());
@@ -100,6 +132,7 @@ namespace MouseDummy
                                 break;
                             case "Gradual":
                                 // Gradual
+                                int speed = (int)nmrupdwn_gradualSpeed.Value;
                                 break;
                             default:
                                 MessageBox.Show("An error occurred at running the point " + (i + 1) + "'s Action (" + type + ")", "Error running the secuence", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -149,7 +182,11 @@ namespace MouseDummy
                         MessageBox.Show("You must assign an action to the point " + (i + 1), "Error running the secuence", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         break;
                 }
+                // Delay between actions
+                Thread.Sleep(actionDelay);
             }
+            // Restore the window
+            this.Show();
         }
 
         private void btn_delete_Click(object sender, EventArgs e)
@@ -188,8 +225,8 @@ namespace MouseDummy
             if (cmbbx_savedSequences.Items[cmbbx_savedSequences.SelectedIndex].ToString().Contains("+ Save") && lstbx_points.Items.Count > 0)
             {
                 // Create the sequence's name by summarizing the content of the actions
+                // Sequence number based of how many elements the combobox has (not including the options)
                 string sequenceName = cmbbx_savedSequences.Items.Count - 2 + "-";
-                string[] actions = { "Move", "Right", "Middle", "Left", "Up", "Down" };
                 for (int i = 0; i < lstbx_points.Items.Count; i++)
                 {
                     switch (lstbx_points.Items[i])
@@ -231,9 +268,18 @@ namespace MouseDummy
             }
             else
             {
+                // Clear the current points
+                lstbx_points.Items.Clear();
+
                 // Load from the file
             }
             cmbbx_savedSequences.SelectedText = "";
+        }
+
+        private void nmrupdwn_actionDelay_ValueChanged(object sender, EventArgs e)
+        {
+            // Convert to milliseconds
+            actionDelay = (int)nmrupdwn_actionDelay.Value * 1000;
         }
     }
 }

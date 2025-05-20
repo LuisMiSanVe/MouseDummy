@@ -30,8 +30,9 @@
         {
             components = new System.ComponentModel.Container();
             grpbx_points = new GroupBox();
+            nmrupdwn_actionDelay = new NumericUpDown();
             btn_playLoop = new Button();
-            btn_playSecuence = new Button();
+            btn_playSequence = new Button();
             cmbbx_savedSequences = new ComboBox();
             lstbx_points = new ListBox();
             grpbx_pointSelector = new GroupBox();
@@ -62,6 +63,7 @@
             tmr_checkCoords = new System.Windows.Forms.Timer(components);
             tltp_help = new ToolTip(components);
             grpbx_points.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nmrupdwn_actionDelay).BeginInit();
             grpbx_pointSelector.SuspendLayout();
             grpbx_action.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nmrupdwn_gradualSpeed).BeginInit();
@@ -69,8 +71,9 @@
             // 
             // grpbx_points
             // 
+            grpbx_points.Controls.Add(nmrupdwn_actionDelay);
             grpbx_points.Controls.Add(btn_playLoop);
-            grpbx_points.Controls.Add(btn_playSecuence);
+            grpbx_points.Controls.Add(btn_playSequence);
             grpbx_points.Controls.Add(cmbbx_savedSequences);
             grpbx_points.Controls.Add(lstbx_points);
             grpbx_points.Location = new Point(17, 20);
@@ -82,36 +85,45 @@
             grpbx_points.TabStop = false;
             grpbx_points.Text = "Points";
             // 
+            // nmrupdwn_actionDelay
+            // 
+            nmrupdwn_actionDelay.Location = new Point(249, 34);
+            nmrupdwn_actionDelay.Name = "nmrupdwn_actionDelay";
+            nmrupdwn_actionDelay.Size = new Size(43, 31);
+            nmrupdwn_actionDelay.TabIndex = 4;
+            tltp_help.SetToolTip(nmrupdwn_actionDelay, "Seconds of delay between actions");
+            nmrupdwn_actionDelay.ValueChanged += nmrupdwn_actionDelay_ValueChanged;
+            // 
             // btn_playLoop
             // 
-            btn_playLoop.Location = new Point(344, 36);
+            btn_playLoop.Location = new Point(337, 36);
             btn_playLoop.Margin = new Padding(4, 5, 4, 5);
             btn_playLoop.Name = "btn_playLoop";
-            btn_playLoop.Size = new Size(23, 23);
+            btn_playLoop.Size = new Size(30, 30);
             btn_playLoop.TabIndex = 3;
             tltp_help.SetToolTip(btn_playLoop, "Play Looped Secuence");
             btn_playLoop.UseVisualStyleBackColor = true;
             btn_playLoop.Click += btn_playLoop_Click;
             // 
-            // btn_playSecuence
+            // btn_playSequence
             // 
-            btn_playSecuence.Location = new Point(311, 36);
-            btn_playSecuence.Margin = new Padding(4, 5, 4, 5);
-            btn_playSecuence.Name = "btn_playSecuence";
-            btn_playSecuence.Size = new Size(23, 23);
-            btn_playSecuence.TabIndex = 2;
-            tltp_help.SetToolTip(btn_playSecuence, "Play Secuence");
-            btn_playSecuence.UseVisualStyleBackColor = true;
-            btn_playSecuence.Click += btn_playSecuence_Click;
+            btn_playSequence.Location = new Point(299, 36);
+            btn_playSequence.Margin = new Padding(4, 5, 4, 5);
+            btn_playSequence.Name = "btn_playSequence";
+            btn_playSequence.Size = new Size(30, 30);
+            btn_playSequence.TabIndex = 2;
+            tltp_help.SetToolTip(btn_playSequence, "Play Sequence");
+            btn_playSequence.UseVisualStyleBackColor = true;
+            btn_playSequence.Click += btn_playSequence_Click;
             // 
             // cmbbx_savedSequences
             // 
             cmbbx_savedSequences.FormattingEnabled = true;
-            cmbbx_savedSequences.Items.AddRange(new object[] { "+ Save the current sequence...", "+ New sequence...", "----------------------------------" });
+            cmbbx_savedSequences.Items.AddRange(new object[] { "+ Save the sequence...", "+ New sequence...", "-------------------------------" });
             cmbbx_savedSequences.Location = new Point(23, 32);
             cmbbx_savedSequences.Margin = new Padding(4, 5, 4, 5);
             cmbbx_savedSequences.Name = "cmbbx_savedSequences";
-            cmbbx_savedSequences.Size = new Size(280, 33);
+            cmbbx_savedSequences.Size = new Size(219, 33);
             cmbbx_savedSequences.TabIndex = 1;
             cmbbx_savedSequences.SelectedIndexChanged += cmbbx_savedSequences_SelectedIndexChanged;
             // 
@@ -297,6 +309,7 @@
             // 
             // nmrupdwn_gradualSpeed
             // 
+            nmrupdwn_gradualSpeed.Enabled = false;
             nmrupdwn_gradualSpeed.Location = new Point(354, 86);
             nmrupdwn_gradualSpeed.Name = "nmrupdwn_gradualSpeed";
             nmrupdwn_gradualSpeed.Size = new Size(44, 31);
@@ -435,6 +448,7 @@
             Load += Frm_MouseDummy_Load;
             KeyDown += Frm_MouseDummy_KeyDown;
             grpbx_points.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)nmrupdwn_actionDelay).EndInit();
             grpbx_pointSelector.ResumeLayout(false);
             grpbx_pointSelector.PerformLayout();
             grpbx_action.ResumeLayout(false);
@@ -465,7 +479,7 @@
         private Label lbl_scroll;
         private Button btn_moveInstant;
         private Label lbl_move;
-        private Button btn_playSecuence;
+        private Button btn_playSequence;
         private System.Windows.Forms.Timer tmr_checkCoords;
         private Button btn_playLoop;
         private ToolTip tltp_help;
@@ -477,5 +491,6 @@
         private RadioButton rdbtn_singleClick;
         private Label lbl_gradualSpeed;
         private RadioButton rdbtn_tripleClick;
+        private NumericUpDown nmrupdwn_actionDelay;
     }
 }
