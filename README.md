@@ -6,6 +6,8 @@
 
 WinForms program that lets you configure the mouse's movement and reproduce them anytime.
 
+Despite having similar concept, this program is not meant to be an *autoclicker* (even if you can use it as one), mainly its purpose is to control the cursor automaticly using sequences with all the actions possible with a standart mouse.
+
 ## 📝 Technology Explanation
 I use the DLL librabry `user32.dll` as a Windows API to use the prebuilt mouse movement methods.
 
