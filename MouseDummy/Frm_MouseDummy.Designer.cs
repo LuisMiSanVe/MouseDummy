@@ -31,6 +31,7 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_MouseDummy));
             grpbx_points = new GroupBox();
+            btn_ClearSequences = new Button();
             nmrupdwn_actionDelay = new NumericUpDown();
             btn_playLoop = new Button();
             btn_playSequence = new Button();
@@ -50,8 +51,8 @@
             rdbtn_doubleClick = new RadioButton();
             rdbtn_singleClick = new RadioButton();
             lbl_gradualSpeed = new Label();
-            nmrupdwn_gradualSpeed = new NumericUpDown();
-            button1 = new Button();
+            nmrupdwn_gradualSmooth = new NumericUpDown();
+            btn_clickMiddle = new Button();
             btn_moveInstant = new Button();
             btn_scrollDown = new Button();
             btn_scrollUp = new Button();
@@ -68,11 +69,12 @@
             ((System.ComponentModel.ISupportInitialize)nmrupdwn_actionDelay).BeginInit();
             grpbx_pointSelector.SuspendLayout();
             grpbx_action.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)nmrupdwn_gradualSpeed).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nmrupdwn_gradualSmooth).BeginInit();
             SuspendLayout();
             // 
             // grpbx_points
             // 
+            grpbx_points.Controls.Add(btn_ClearSequences);
             grpbx_points.Controls.Add(nmrupdwn_actionDelay);
             grpbx_points.Controls.Add(btn_playLoop);
             grpbx_points.Controls.Add(btn_playSequence);
@@ -87,9 +89,22 @@
             grpbx_points.TabStop = false;
             grpbx_points.Text = "Points";
             // 
+            // btn_ClearSequences
+            // 
+            btn_ClearSequences.BackgroundImage = (Image)resources.GetObject("btn_ClearSequences.BackgroundImage");
+            btn_ClearSequences.BackgroundImageLayout = ImageLayout.Stretch;
+            btn_ClearSequences.Location = new Point(337, 33);
+            btn_ClearSequences.Margin = new Padding(4, 5, 4, 5);
+            btn_ClearSequences.Name = "btn_ClearSequences";
+            btn_ClearSequences.Size = new Size(30, 30);
+            btn_ClearSequences.TabIndex = 5;
+            tltp_help.SetToolTip(btn_ClearSequences, "Play Sequence");
+            btn_ClearSequences.UseVisualStyleBackColor = true;
+            btn_ClearSequences.Click += btn_ClearSequences_Click;
+            // 
             // nmrupdwn_actionDelay
             // 
-            nmrupdwn_actionDelay.Location = new Point(249, 34);
+            nmrupdwn_actionDelay.Location = new Point(211, 33);
             nmrupdwn_actionDelay.Name = "nmrupdwn_actionDelay";
             nmrupdwn_actionDelay.Size = new Size(43, 31);
             nmrupdwn_actionDelay.TabIndex = 4;
@@ -100,7 +115,7 @@
             // 
             btn_playLoop.BackgroundImage = (Image)resources.GetObject("btn_playLoop.BackgroundImage");
             btn_playLoop.BackgroundImageLayout = ImageLayout.Stretch;
-            btn_playLoop.Location = new Point(337, 36);
+            btn_playLoop.Location = new Point(299, 33);
             btn_playLoop.Margin = new Padding(4, 5, 4, 5);
             btn_playLoop.Name = "btn_playLoop";
             btn_playLoop.Size = new Size(30, 30);
@@ -113,7 +128,7 @@
             // 
             btn_playSequence.BackgroundImage = (Image)resources.GetObject("btn_playSequence.BackgroundImage");
             btn_playSequence.BackgroundImageLayout = ImageLayout.Stretch;
-            btn_playSequence.Location = new Point(299, 36);
+            btn_playSequence.Location = new Point(261, 33);
             btn_playSequence.Margin = new Padding(4, 5, 4, 5);
             btn_playSequence.Name = "btn_playSequence";
             btn_playSequence.Size = new Size(30, 30);
@@ -129,7 +144,7 @@
             cmbbx_savedSequences.Location = new Point(23, 32);
             cmbbx_savedSequences.Margin = new Padding(4, 5, 4, 5);
             cmbbx_savedSequences.Name = "cmbbx_savedSequences";
-            cmbbx_savedSequences.Size = new Size(219, 33);
+            cmbbx_savedSequences.Size = new Size(181, 33);
             cmbbx_savedSequences.TabIndex = 1;
             cmbbx_savedSequences.SelectedIndexChanged += cmbbx_savedSequences_SelectedIndexChanged;
             // 
@@ -248,8 +263,8 @@
             grpbx_action.Controls.Add(rdbtn_doubleClick);
             grpbx_action.Controls.Add(rdbtn_singleClick);
             grpbx_action.Controls.Add(lbl_gradualSpeed);
-            grpbx_action.Controls.Add(nmrupdwn_gradualSpeed);
-            grpbx_action.Controls.Add(button1);
+            grpbx_action.Controls.Add(nmrupdwn_gradualSmooth);
+            grpbx_action.Controls.Add(btn_clickMiddle);
             grpbx_action.Controls.Add(btn_moveInstant);
             grpbx_action.Controls.Add(btn_scrollDown);
             grpbx_action.Controls.Add(btn_scrollUp);
@@ -306,32 +321,32 @@
             // lbl_gradualSpeed
             // 
             lbl_gradualSpeed.AutoSize = true;
-            lbl_gradualSpeed.Location = new Point(215, 88);
+            lbl_gradualSpeed.Location = new Point(232, 88);
             lbl_gradualSpeed.Margin = new Padding(4, 0, 4, 0);
             lbl_gradualSpeed.Name = "lbl_gradualSpeed";
-            lbl_gradualSpeed.Size = new Size(132, 25);
+            lbl_gradualSpeed.Size = new Size(115, 25);
             lbl_gradualSpeed.TabIndex = 11;
-            lbl_gradualSpeed.Text = "Gradual Speed:";
+            lbl_gradualSpeed.Text = "Smoothness:";
             // 
-            // nmrupdwn_gradualSpeed
+            // nmrupdwn_gradualSmooth
             // 
-            nmrupdwn_gradualSpeed.Enabled = false;
-            nmrupdwn_gradualSpeed.Location = new Point(354, 86);
-            nmrupdwn_gradualSpeed.Name = "nmrupdwn_gradualSpeed";
-            nmrupdwn_gradualSpeed.Size = new Size(44, 31);
-            nmrupdwn_gradualSpeed.TabIndex = 10;
+            nmrupdwn_gradualSmooth.Enabled = false;
+            nmrupdwn_gradualSmooth.Location = new Point(354, 86);
+            nmrupdwn_gradualSmooth.Name = "nmrupdwn_gradualSmooth";
+            nmrupdwn_gradualSmooth.Size = new Size(44, 31);
+            nmrupdwn_gradualSmooth.TabIndex = 10;
             // 
-            // button1
+            // btn_clickMiddle
             // 
-            button1.Location = new Point(225, 140);
-            button1.Margin = new Padding(4, 5, 4, 5);
-            button1.Name = "button1";
-            button1.Size = new Size(80, 38);
-            button1.TabIndex = 9;
-            button1.Tag = "Click";
-            button1.Text = "Middle";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += btn_action_Click;
+            btn_clickMiddle.Location = new Point(225, 140);
+            btn_clickMiddle.Margin = new Padding(4, 5, 4, 5);
+            btn_clickMiddle.Name = "btn_clickMiddle";
+            btn_clickMiddle.Size = new Size(80, 38);
+            btn_clickMiddle.TabIndex = 9;
+            btn_clickMiddle.Tag = "Click";
+            btn_clickMiddle.Text = "Middle";
+            btn_clickMiddle.UseVisualStyleBackColor = true;
+            btn_clickMiddle.Click += btn_action_Click;
             // 
             // btn_moveInstant
             // 
@@ -459,7 +474,9 @@
             KeyPreview = true;
             Margin = new Padding(4, 5, 4, 5);
             Name = "Frm_MouseDummy";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Mouse Dummy";
+            TopMost = true;
             Load += Frm_MouseDummy_Load;
             KeyDown += Frm_MouseDummy_KeyDown;
             grpbx_points.ResumeLayout(false);
@@ -468,7 +485,7 @@
             grpbx_pointSelector.PerformLayout();
             grpbx_action.ResumeLayout(false);
             grpbx_action.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)nmrupdwn_gradualSpeed).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nmrupdwn_gradualSmooth).EndInit();
             ResumeLayout(false);
         }
 
@@ -500,13 +517,14 @@
         private ToolTip tltp_help;
         private Button btn_copy;
         private Button btn_delete;
-        private Button button1;
-        private NumericUpDown nmrupdwn_gradualSpeed;
+        private Button btn_clickMiddle;
+        private NumericUpDown nmrupdwn_gradualSmooth;
         private RadioButton rdbtn_doubleClick;
         private RadioButton rdbtn_singleClick;
         private Label lbl_gradualSpeed;
         private RadioButton rdbtn_tripleClick;
         private NumericUpDown nmrupdwn_actionDelay;
         private ImageList imglst_play;
+        private Button btn_ClearSequences;
     }
 }
