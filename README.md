@@ -4,9 +4,9 @@
 [![image](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)](https://dotnet.microsoft.com/en-us/learn/dotnet/what-is-dotnet)
 [![image](https://img.shields.io/badge/Visual_Studio-5C2D91?style=for-the-badge&logo=visual%20studio&logoColor=white)](https://visualstudio.microsoft.com/)
 
-WinForms program that lets you configure the mouse's movement and reproduce them anytime.
+WinForms program that lets you configure the mouse's movement and reproduce it anytime.
 
-Despite having similar concept, this program is not meant to be an *autoclicker* (even if you can use it as one), mainly its purpose is to control the cursor automaticly using sequences with all the actions possible with a standart mouse.
+Despite having similar concept, this program is not meant to be an *autoclicker* (even if you can use it as one), mainly its purpose is to control the cursor automatically using sequences with all the actions possible with a standart mouse.
 
 ## 📝 Technology Explanation
 I use the DLL librabry `user32.dll` as a Windows API to use the prebuilt mouse movement methods.
@@ -19,7 +19,7 @@ You can save a secuence and reproduce it anytime selecting it on the *combo box*
 ## 📂 Files
 By pressing the `Save` button in the *combo box*, a file with the point secuence will be saved internally in your drive.
 
-The name of the file will be automaticly created by a method that summarizes the actions of the sequence.
+The name of the file will be automatically created by a method that summarizes the actions of the sequence.
 
 ## 🚀 Releases
 The version will be released using these versioning policies:\
@@ -33,7 +33,8 @@ The version number will follow this format: \
 ## 💻 Technologies Used
 - Programming Language: [C#](https://dotnet.microsoft.com/en-us/languages/csharp) 
 - Framework: [.Net](https://dotnet.microsoft.com/en-us/learn/dotnet/what-is-dotnet)
-- Libraries: user32.dll
+- Libraries: **user32.dll**
 - Other:
   - [ChatGPT](https://chatgpt.com/) (icon)
+  - [Freeicons](https://freeicons.io/) (images)
 - Recommended IDE: [Visual Studio](https://visualstudio.microsoft.com/)
