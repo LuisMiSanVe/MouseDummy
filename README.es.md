@@ -33,7 +33,8 @@ El número de la versión seguirá este formato: \
 ## 💻 Tecnologías usadas
 - Lenguaje de programación: [C#](https://dotnet.microsoft.com/en-us/languages/csharp) 
 - Framework: [.Net](https://dotnet.microsoft.com/en-us/learn/dotnet/what-is-dotnet)
-- Librerías: user32.dll
+- Librerías: **user32.dll**
 - Otros:
   - [ChatGPT](https://chatgpt.com/) (icono)
+  - [Freeicons](https://freeicons.io/) (imágenes)
 - IDE Recomendado: [Visual Studio](https://visualstudio.microsoft.com/)
