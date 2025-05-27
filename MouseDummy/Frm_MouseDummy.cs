@@ -337,36 +337,42 @@ namespace MouseDummy
                                 break;
                         }
                     }
+                    try
+                    {
+                        // Save in a file
+                        if (!Directory.Exists("SavedSequences"))
+                            Directory.CreateDirectory("SavedSequences");
+                        File.WriteAllText("SavedSequences\\" + sequenceName + ".sqc", currentSequence);
 
-                    // Save in a file
-                    if (!Directory.Exists("SavedSequences"))
-                        Directory.CreateDirectory("SavedSequences");
-                    File.WriteAllText("SavedSequences\\" + sequenceName + ".sqc", currentSequence);
-
-                    // Adds the sequence to the ComboBox
-                    cmbbx_savedSequences.Items.Add(sequenceName);
+                        // Adds the sequence to the ComboBox
+                        cmbbx_savedSequences.Items.Add(sequenceName);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("The sequence couldn't be saved in your drive, make sure the installation path have the necessary permissions or start the program as Administrator.", "Permissions Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-            }
-            else if (cmbbx_savedSequences.Items[cmbbx_savedSequences.SelectedIndex].ToString().Contains("+ New"))
-            {
-                // Clear the current points
-                lstbx_points.Items.Clear();
-            }
-            else if (cmbbx_savedSequences.Items[cmbbx_savedSequences.SelectedIndex].ToString().Contains("------"))
-            {
-                // Does nothing as only serves as separator between options and actual saved sequences
-            }
-            else
-            {
-                // Clear the current points
-                lstbx_points.Items.Clear();
+                else if (cmbbx_savedSequences.Items[cmbbx_savedSequences.SelectedIndex].ToString().Contains("+ New"))
+                {
+                    // Clear the current points
+                    lstbx_points.Items.Clear();
+                }
+                else if (cmbbx_savedSequences.Items[cmbbx_savedSequences.SelectedIndex].ToString().Contains("------"))
+                {
+                    // Does nothing as only serves as separator between options and actual saved sequences
+                }
+                else
+                {
+                    // Clear the current points
+                    lstbx_points.Items.Clear();
 
-                // Load from the file
-                string[] savedSequence = File.ReadAllText("SavedSequences\\" + cmbbx_savedSequences.SelectedItem + ".sqc").Split("\n");
+                    // Load from the file
+                    string[] savedSequence = File.ReadAllText("SavedSequences\\" + cmbbx_savedSequences.SelectedItem + ".sqc").Split("\n");
 
-                lstbx_points.Items.AddRange(savedSequence);
+                    lstbx_points.Items.AddRange(savedSequence);
+                }
+                cmbbx_savedSequences.SelectedText = "";
             }
-            cmbbx_savedSequences.SelectedText = "";
         }
 
         private void nmrupdwn_actionDelay_ValueChanged(object sender, EventArgs e)
