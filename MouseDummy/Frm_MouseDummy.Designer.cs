@@ -321,7 +321,7 @@
             // lbl_gradualSpeed
             // 
             lbl_gradualSpeed.AutoSize = true;
-            lbl_gradualSpeed.Location = new Point(232, 88);
+            lbl_gradualSpeed.Location = new Point(225, 88);
             lbl_gradualSpeed.Margin = new Padding(4, 0, 4, 0);
             lbl_gradualSpeed.Name = "lbl_gradualSpeed";
             lbl_gradualSpeed.Size = new Size(115, 25);
@@ -331,9 +331,9 @@
             // nmrupdwn_gradualSmooth
             // 
             nmrupdwn_gradualSmooth.Enabled = false;
-            nmrupdwn_gradualSmooth.Location = new Point(354, 86);
+            nmrupdwn_gradualSmooth.Location = new Point(340, 86);
             nmrupdwn_gradualSmooth.Name = "nmrupdwn_gradualSmooth";
-            nmrupdwn_gradualSmooth.Size = new Size(44, 31);
+            nmrupdwn_gradualSmooth.Size = new Size(58, 31);
             nmrupdwn_gradualSmooth.TabIndex = 10;
             // 
             // btn_clickMiddle
@@ -470,9 +470,11 @@
             Controls.Add(grpbx_action);
             Controls.Add(grpbx_pointSelector);
             Controls.Add(grpbx_points);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
             Margin = new Padding(4, 5, 4, 5);
+            MaximizeBox = false;
             Name = "Frm_MouseDummy";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Mouse Dummy";

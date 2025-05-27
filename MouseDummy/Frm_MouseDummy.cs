@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using static System.Windows.Forms.AxHost;
 
 namespace MouseDummy
 {
@@ -76,6 +77,8 @@ namespace MouseDummy
                 // Disable Gradual Speed by default
                 nmrupdwn_gradualSmooth.Enabled = false;
             }
+            else
+                MessageBox.Show("Select the Point's X and Y first!", "Error adding point", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void btn_action_Click(object sender, EventArgs e)
@@ -92,7 +95,7 @@ namespace MouseDummy
                 // Enable Gradual speed if you selected Gradual Move
                 if (snd.Text.Contains("Gradual"))
                     nmrupdwn_gradualSmooth.Enabled = true;
-                else if (snd.Text.Contains("Instant"))
+                else
                     nmrupdwn_gradualSmooth.Enabled = false;
             }
             else
@@ -176,8 +179,22 @@ namespace MouseDummy
                                 SetCursorPos(x, y);
                                 break;
                             case "Gradual":
-                                // Gradual
+                                int currentX = Cursor.Position.X;
+                                int currentY = Cursor.Position.Y;
+                                if (nmrupdwn_gradualSmooth.Value == 0)
+                                    // If gradual is selected, smooth is set at 10 by default (if it havent been changed manually)
+                                    nmrupdwn_gradualSmooth.Value = 10;
                                 int smoothness = (int)nmrupdwn_gradualSmooth.Value;
+
+                                for (int f = 1; f <= smoothness; f++)
+                                {
+                                    float t = (float)f / smoothness;
+                                    int intermediateX = (int)(currentX + (x - currentX) * t);
+                                    int intermediateY = (int)(currentY + (y - currentY) * t);
+
+                                    SetCursorPos(intermediateX, intermediateY);
+                                    Thread.Sleep(50);
+                                }
                                 break;
                             default:
                                 MessageBox.Show("An error occurred at running the point " + (i + 1) + "'s Action (" + type + ")", "Error running the secuence", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -243,6 +260,10 @@ namespace MouseDummy
             {
                 lstbx_points.Items.Remove(lstbx_points.SelectedItem);
                 // Re-assign point number count
+                for (int i = 0; i < lstbx_points.Items.Count; i++) 
+                {
+                    lstbx_points.Items[i] = lstbx_points.Items[i].ToString().Replace(lstbx_points.Items[i].ToString().Split("|")[0], "Point " + (i+1) + " ");
+                }
             }
             else
                 MessageBox.Show("Select the Point you want to delete first!", "Error deleting the point", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -372,6 +393,8 @@ namespace MouseDummy
                     Application.Restart();
                 }
             }
+            else
+                MessageBox.Show("There is no saved sequences to delete, try saving some first!", "Error clearing saved sequences", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
 }
