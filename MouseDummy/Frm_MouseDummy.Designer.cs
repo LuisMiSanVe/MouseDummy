@@ -64,7 +64,6 @@
             lbl_move = new Label();
             tmr_checkCoords = new System.Windows.Forms.Timer(components);
             tltp_help = new ToolTip(components);
-            imglst_play = new ImageList(components);
             grpbx_points.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nmrupdwn_actionDelay).BeginInit();
             grpbx_pointSelector.SuspendLayout();
@@ -98,7 +97,7 @@
             btn_ClearSequences.Name = "btn_ClearSequences";
             btn_ClearSequences.Size = new Size(30, 30);
             btn_ClearSequences.TabIndex = 5;
-            tltp_help.SetToolTip(btn_ClearSequences, "Play Sequence");
+            tltp_help.SetToolTip(btn_ClearSequences, "Clear Sequences");
             btn_ClearSequences.UseVisualStyleBackColor = true;
             btn_ClearSequences.Click += btn_ClearSequences_Click;
             // 
@@ -206,7 +205,7 @@
             btn_trackMousePos.Name = "btn_trackMousePos";
             btn_trackMousePos.Size = new Size(91, 38);
             btn_trackMousePos.TabIndex = 5;
-            btn_trackMousePos.Text = "Track";
+            btn_trackMousePos.Text = "Track (T)";
             btn_trackMousePos.UseVisualStyleBackColor = true;
             btn_trackMousePos.Click += btn_trackMousePos_Click;
             // 
@@ -454,14 +453,6 @@
             // 
             tmr_checkCoords.Tick += tmr_checkCoords_Tick;
             // 
-            // imglst_play
-            // 
-            imglst_play.ColorDepth = ColorDepth.Depth32Bit;
-            imglst_play.ImageStream = (ImageListStreamer)resources.GetObject("imglst_play.ImageStream");
-            imglst_play.TransparentColor = Color.Transparent;
-            imglst_play.Images.SetKeyName(0, "buttonStart.png");
-            imglst_play.Images.SetKeyName(1, "buttonStop.png");
-            // 
             // Frm_MouseDummy
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -526,7 +517,6 @@
         private Label lbl_gradualSpeed;
         private RadioButton rdbtn_tripleClick;
         private NumericUpDown nmrupdwn_actionDelay;
-        private ImageList imglst_play;
         private Button btn_ClearSequences;
     }
 }

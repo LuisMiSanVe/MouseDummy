@@ -110,12 +110,17 @@ namespace MouseDummy
 
         private void Frm_MouseDummy_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.N)
-                btn_add_Click(null, null);
-            else if (e.KeyCode == Keys.C)
+            switch (e.KeyCode)
             {
-                // Cancel sequence
-                keepLoop = false;
+                case Keys.N:
+                    btn_add_Click(null, null);
+                    break;
+                case Keys.C:
+                    keepLoop = false;
+                    break;
+                case Keys.T:
+                    btn_trackMousePos_Click(null,null);
+                    break;
             }
         }
 
@@ -155,10 +160,9 @@ namespace MouseDummy
         }
 
         private void runSequence() {
-            // Disable the window
-            grpbx_action.Enabled = false;
-            grpbx_pointSelector.Enabled = false;
-            btn_playSequence.BackgroundImage = imglst_play.Images[1];
+            // Hide the window
+            this.Hide();
+
             // Run the sequence
             for (int i = 0; i < lstbx_points.Items.Count; i++)
             {
@@ -247,10 +251,9 @@ namespace MouseDummy
                 // Delay between actions
                 Thread.Sleep(actionDelay);
             }
-            // Enable the window
-            grpbx_action.Enabled = true;
-            grpbx_pointSelector.Enabled = true;
-            btn_playSequence.BackgroundImage = imglst_play.Images[0];
+            // Show the window and get focus
+            this.Show();
+            this.Focus();
             this.Activate();
         }
 
@@ -306,35 +309,40 @@ namespace MouseDummy
                     // Sequence number based of how many elements the combobox has (not including the options)
                     string sequenceName = cmbbx_savedSequences.Items.Count - 2 + "-";
                     string currentSequence = "";
+
                     for (int i = 0; i < lstbx_points.Items.Count; i++)
                     {
                         string separator = "\n";
                         if (i == lstbx_points.Items.Count - 1)
                             separator = "";
                         currentSequence += lstbx_points.Items[i] + separator;
-                        switch (lstbx_points.Items[i])
+
+                        if (i < 7) // The summarized actions in the sequence's name should be more than 7
                         {
-                            case string a when a.Contains("Move"):
-                                sequenceName += "Mv";
-                                break;
-                            case string b when b.Contains("Right"):
-                                sequenceName += "Rgt";
-                                break;
-                            case string c when c.Contains("Middle"):
-                                sequenceName += "Mdl";
-                                break;
-                            case string d when d.Contains("Left"):
-                                sequenceName += "Lft";
-                                break;
-                            case string f when f.Contains("Up"):
-                                sequenceName += "Up";
-                                break;
-                            case string h when h.Contains("Down"):
-                                sequenceName += "Dwn";
-                                break;
-                            default:
-                                sequenceName += "NoAct";
-                                break;
+                            switch (lstbx_points.Items[i])
+                            {
+                                case string a when a.Contains("Move"):
+                                    sequenceName += "Mv";
+                                    break;
+                                case string b when b.Contains("Right"):
+                                    sequenceName += "Rgt";
+                                    break;
+                                case string c when c.Contains("Middle"):
+                                    sequenceName += "Mdl";
+                                    break;
+                                case string d when d.Contains("Left"):
+                                    sequenceName += "Lft";
+                                    break;
+                                case string f when f.Contains("Up"):
+                                    sequenceName += "Up";
+                                    break;
+                                case string h when h.Contains("Down"):
+                                    sequenceName += "Dwn";
+                                    break;
+                                default:
+                                    sequenceName += "NoAct";
+                                    break;
+                            }
                         }
                     }
                     try
