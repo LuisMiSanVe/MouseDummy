@@ -119,7 +119,7 @@ namespace MouseDummy
                     keepLoop = false;
                     break;
                 case Keys.T:
-                    btn_trackMousePos_Click(null,null);
+                    btn_trackMousePos_Click(null, null);
                     break;
             }
         }
@@ -128,7 +128,7 @@ namespace MouseDummy
         {
             if (MessageBox.Show("The sequence will run in loop infinitely, until you cancel it.\n" +
                                 "The delay between actions in looped sequences is set to a minimum of 1 second with an extra delay time after a whole sequence is run, so you can safely cancel the process.\n" +
-                                "Do you want to continue?","Loop Sequences Information", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                                "Do you want to continue?", "Loop Sequences Information", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
             {
                 tltp_help.Show("Stop sequence (C)", btn_playSequence);
                 // Play in loop
@@ -159,7 +159,8 @@ namespace MouseDummy
             runSequence();
         }
 
-        private void runSequence() {
+        private void runSequence()
+        {
             // Hide the window
             this.Hide();
 
@@ -263,9 +264,9 @@ namespace MouseDummy
             {
                 lstbx_points.Items.Remove(lstbx_points.SelectedItem);
                 // Re-assign point number count
-                for (int i = 0; i < lstbx_points.Items.Count; i++) 
+                for (int i = 0; i < lstbx_points.Items.Count; i++)
                 {
-                    lstbx_points.Items[i] = lstbx_points.Items[i].ToString().Replace(lstbx_points.Items[i].ToString().Split("|")[0], "Point " + (i+1) + " ");
+                    lstbx_points.Items[i] = lstbx_points.Items[i].ToString().Replace(lstbx_points.Items[i].ToString().Split("|")[0], "Point " + (i + 1) + " ");
                 }
             }
             else
@@ -396,7 +397,8 @@ namespace MouseDummy
             {
                 if (MessageBox.Show("Are you sure you want to clear all the saved sequences?\n" +
                                     "This will delete every sequence file saved in your system.\n" +
-                                    "The program will restart afterwards.", "Deletion Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes) {
+                                    "The program will restart afterwards.", "Deletion Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
                     foreach (string file in Directory.GetFiles("SavedSequences"))
                     {
                         File.Delete(file);
@@ -410,6 +412,60 @@ namespace MouseDummy
             }
             else
                 MessageBox.Show("There is no saved sequences to delete, try saving some first!", "Error clearing saved sequences", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void btn_up_Click(object sender, EventArgs e)
+        {
+            if (lstbx_points.SelectedItem != null)
+            {
+                if (lstbx_points.SelectedIndex != 0)
+                {
+                    // Temporally save the items content
+                    string currentItem = lstbx_points.Items[lstbx_points.SelectedIndex].ToString();
+                    string upperItem = lstbx_points.Items[lstbx_points.SelectedIndex-1].ToString();
+                    // Swap content with the item of above
+                    lstbx_points.Items[lstbx_points.SelectedIndex] = upperItem;
+                    lstbx_points.Items[lstbx_points.SelectedIndex - 1] = currentItem;
+
+                    // Focus on the new position of the item
+                    lstbx_points.SelectedIndex--;
+
+                    // Re-assign point number count
+                    for (int i = 0; i < lstbx_points.Items.Count; i++)
+                    {
+                        lstbx_points.Items[i] = lstbx_points.Items[i].ToString().Replace(lstbx_points.Items[i].ToString().Split("|")[0], "Point " + (i + 1) + " ");
+                    }
+                }
+            }
+            else
+                MessageBox.Show("Select the Point you want to move first!", "Error moving the point", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void btn_down_Click(object sender, EventArgs e)
+        {
+            if (lstbx_points.SelectedItem != null)
+            {
+                if (lstbx_points.SelectedIndex != lstbx_points.Items.Count-1)
+                {
+                    // Temporally save the items content
+                    string currentItem = lstbx_points.Items[lstbx_points.SelectedIndex].ToString();
+                    string downItem = lstbx_points.Items[lstbx_points.SelectedIndex + 1].ToString();
+                    // Swap content with the item of above
+                    lstbx_points.Items[lstbx_points.SelectedIndex] = downItem;
+                    lstbx_points.Items[lstbx_points.SelectedIndex + 1] = currentItem;
+
+                    // Focus on the new position of the item
+                    lstbx_points.SelectedIndex++;
+
+                    // Re-assign point number count
+                    for (int i = 0; i < lstbx_points.Items.Count; i++)
+                    {
+                        lstbx_points.Items[i] = lstbx_points.Items[i].ToString().Replace(lstbx_points.Items[i].ToString().Split("|")[0], "Point " + (i + 1) + " ");
+                    }
+                }
+            }
+            else
+                MessageBox.Show("Select the Point you want to move first!", "Error moving the point", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
 }

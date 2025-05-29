@@ -64,6 +64,9 @@
             lbl_move = new Label();
             tmr_checkCoords = new System.Windows.Forms.Timer(components);
             tltp_help = new ToolTip(components);
+            btn_down = new Button();
+            btn_up = new Button();
+            lbl_movepoint = new Label();
             grpbx_points.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nmrupdwn_actionDelay).BeginInit();
             grpbx_pointSelector.SuspendLayout();
@@ -73,6 +76,9 @@
             // 
             // grpbx_points
             // 
+            grpbx_points.Controls.Add(lbl_movepoint);
+            grpbx_points.Controls.Add(btn_up);
+            grpbx_points.Controls.Add(btn_down);
             grpbx_points.Controls.Add(btn_ClearSequences);
             grpbx_points.Controls.Add(nmrupdwn_actionDelay);
             grpbx_points.Controls.Add(btn_playLoop);
@@ -154,7 +160,7 @@
             lstbx_points.Location = new Point(23, 80);
             lstbx_points.Margin = new Padding(4, 5, 4, 5);
             lstbx_points.Name = "lstbx_points";
-            lstbx_points.Size = new Size(344, 379);
+            lstbx_points.Size = new Size(344, 354);
             lstbx_points.TabIndex = 0;
             // 
             // grpbx_pointSelector
@@ -453,6 +459,35 @@
             // 
             tmr_checkCoords.Tick += tmr_checkCoords_Tick;
             // 
+            // btn_down
+            // 
+            btn_down.Location = new Point(250, 442);
+            btn_down.Name = "btn_down";
+            btn_down.Size = new Size(68, 34);
+            btn_down.TabIndex = 6;
+            btn_down.Text = "v";
+            btn_down.UseVisualStyleBackColor = true;
+            btn_down.Click += btn_down_Click;
+            // 
+            // btn_up
+            // 
+            btn_up.Location = new Point(176, 442);
+            btn_up.Name = "btn_up";
+            btn_up.Size = new Size(68, 34);
+            btn_up.TabIndex = 7;
+            btn_up.Text = "^";
+            btn_up.UseVisualStyleBackColor = true;
+            btn_up.Click += btn_up_Click;
+            // 
+            // lbl_movepoint
+            // 
+            lbl_movepoint.AutoSize = true;
+            lbl_movepoint.Location = new Point(64, 445);
+            lbl_movepoint.Name = "lbl_movepoint";
+            lbl_movepoint.Size = new Size(106, 25);
+            lbl_movepoint.TabIndex = 8;
+            lbl_movepoint.Text = "Move Point:";
+            // 
             // Frm_MouseDummy
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -473,6 +508,7 @@
             Load += Frm_MouseDummy_Load;
             KeyDown += Frm_MouseDummy_KeyDown;
             grpbx_points.ResumeLayout(false);
+            grpbx_points.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)nmrupdwn_actionDelay).EndInit();
             grpbx_pointSelector.ResumeLayout(false);
             grpbx_pointSelector.PerformLayout();
@@ -518,5 +554,8 @@
         private RadioButton rdbtn_tripleClick;
         private NumericUpDown nmrupdwn_actionDelay;
         private Button btn_ClearSequences;
+        private Label lbl_movepoint;
+        private Button btn_up;
+        private Button btn_down;
     }
 }
