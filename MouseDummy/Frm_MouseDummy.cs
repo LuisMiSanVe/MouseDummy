@@ -74,8 +74,6 @@ namespace MouseDummy
                 // Clear the X and Y fields
                 txtbx_x.Text = "";
                 txtbx_y.Text = "";
-                // Disable Gradual Speed by default
-                nmrupdwn_gradualSmooth.Enabled = false;
             }
             else
                 MessageBox.Show("Select the Point's X and Y first!", "Error adding point", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -92,11 +90,6 @@ namespace MouseDummy
                 if (snd.Tag.ToString().Contains("Click"))
                     lstbx_points.Items[lstbx_points.SelectedIndex] += clickType + "-";
                 lstbx_points.Items[lstbx_points.SelectedIndex] += snd.Tag + " " + snd.Text;
-                // Enable Gradual speed if you selected Gradual Move
-                if (snd.Text.Contains("Gradual"))
-                    nmrupdwn_gradualSmooth.Enabled = true;
-                else
-                    nmrupdwn_gradualSmooth.Enabled = false;
             }
             else
                 MessageBox.Show("Select the Point you want to asign the action first!", "Error assigning action to the point", MessageBoxButtons.OK, MessageBoxIcon.Warning);

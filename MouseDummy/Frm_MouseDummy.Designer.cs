@@ -377,7 +377,6 @@
             // 
             // nmrupdwn_gradualSmooth
             // 
-            nmrupdwn_gradualSmooth.Enabled = false;
             nmrupdwn_gradualSmooth.Location = new Point(340, 86);
             nmrupdwn_gradualSmooth.Name = "nmrupdwn_gradualSmooth";
             nmrupdwn_gradualSmooth.Size = new Size(58, 31);
