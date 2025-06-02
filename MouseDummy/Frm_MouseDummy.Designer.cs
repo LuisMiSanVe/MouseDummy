@@ -31,6 +31,9 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_MouseDummy));
             grpbx_points = new GroupBox();
+            lbl_movepoint = new Label();
+            btn_up = new Button();
+            btn_down = new Button();
             btn_ClearSequences = new Button();
             nmrupdwn_actionDelay = new NumericUpDown();
             btn_playLoop = new Button();
@@ -47,6 +50,7 @@
             txtbx_x = new TextBox();
             txtbx_y = new TextBox();
             grpbx_action = new GroupBox();
+            rdbtn_HoldRelease = new RadioButton();
             rdbtn_tripleClick = new RadioButton();
             rdbtn_doubleClick = new RadioButton();
             rdbtn_singleClick = new RadioButton();
@@ -64,9 +68,6 @@
             lbl_move = new Label();
             tmr_checkCoords = new System.Windows.Forms.Timer(components);
             tltp_help = new ToolTip(components);
-            btn_down = new Button();
-            btn_up = new Button();
-            lbl_movepoint = new Label();
             grpbx_points.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nmrupdwn_actionDelay).BeginInit();
             grpbx_pointSelector.SuspendLayout();
@@ -93,6 +94,35 @@
             grpbx_points.TabIndex = 0;
             grpbx_points.TabStop = false;
             grpbx_points.Text = "Points";
+            // 
+            // lbl_movepoint
+            // 
+            lbl_movepoint.AutoSize = true;
+            lbl_movepoint.Location = new Point(64, 445);
+            lbl_movepoint.Name = "lbl_movepoint";
+            lbl_movepoint.Size = new Size(106, 25);
+            lbl_movepoint.TabIndex = 8;
+            lbl_movepoint.Text = "Move Point:";
+            // 
+            // btn_up
+            // 
+            btn_up.Location = new Point(176, 442);
+            btn_up.Name = "btn_up";
+            btn_up.Size = new Size(68, 34);
+            btn_up.TabIndex = 7;
+            btn_up.Text = "^";
+            btn_up.UseVisualStyleBackColor = true;
+            btn_up.Click += btn_up_Click;
+            // 
+            // btn_down
+            // 
+            btn_down.Location = new Point(250, 442);
+            btn_down.Name = "btn_down";
+            btn_down.Size = new Size(68, 34);
+            btn_down.TabIndex = 6;
+            btn_down.Text = "v";
+            btn_down.UseVisualStyleBackColor = true;
+            btn_down.Click += btn_down_Click;
             // 
             // btn_ClearSequences
             // 
@@ -264,6 +294,7 @@
             // 
             // grpbx_action
             // 
+            grpbx_action.Controls.Add(rdbtn_HoldRelease);
             grpbx_action.Controls.Add(rdbtn_tripleClick);
             grpbx_action.Controls.Add(rdbtn_doubleClick);
             grpbx_action.Controls.Add(rdbtn_singleClick);
@@ -288,10 +319,21 @@
             grpbx_action.TabStop = false;
             grpbx_action.Text = "Actions";
             // 
+            // rdbtn_HoldRelease
+            // 
+            rdbtn_HoldRelease.AutoSize = true;
+            rdbtn_HoldRelease.Location = new Point(324, 186);
+            rdbtn_HoldRelease.Name = "rdbtn_HoldRelease";
+            rdbtn_HoldRelease.Size = new Size(76, 29);
+            rdbtn_HoldRelease.TabIndex = 15;
+            rdbtn_HoldRelease.Text = "Hold";
+            rdbtn_HoldRelease.UseVisualStyleBackColor = true;
+            rdbtn_HoldRelease.CheckedChanged += rdbtn_Click_CheckedChanged;
+            // 
             // rdbtn_tripleClick
             // 
             rdbtn_tripleClick.AutoSize = true;
-            rdbtn_tripleClick.Location = new Point(326, 186);
+            rdbtn_tripleClick.Location = new Point(240, 186);
             rdbtn_tripleClick.Name = "rdbtn_tripleClick";
             rdbtn_tripleClick.Size = new Size(78, 29);
             rdbtn_tripleClick.TabIndex = 14;
@@ -302,7 +344,7 @@
             // rdbtn_doubleClick
             // 
             rdbtn_doubleClick.AutoSize = true;
-            rdbtn_doubleClick.Location = new Point(225, 186);
+            rdbtn_doubleClick.Location = new Point(139, 186);
             rdbtn_doubleClick.Name = "rdbtn_doubleClick";
             rdbtn_doubleClick.Size = new Size(95, 29);
             rdbtn_doubleClick.TabIndex = 13;
@@ -314,7 +356,7 @@
             // 
             rdbtn_singleClick.AutoSize = true;
             rdbtn_singleClick.Checked = true;
-            rdbtn_singleClick.Location = new Point(134, 186);
+            rdbtn_singleClick.Location = new Point(48, 186);
             rdbtn_singleClick.Name = "rdbtn_singleClick";
             rdbtn_singleClick.Size = new Size(85, 29);
             rdbtn_singleClick.TabIndex = 12;
@@ -459,35 +501,6 @@
             // 
             tmr_checkCoords.Tick += tmr_checkCoords_Tick;
             // 
-            // btn_down
-            // 
-            btn_down.Location = new Point(250, 442);
-            btn_down.Name = "btn_down";
-            btn_down.Size = new Size(68, 34);
-            btn_down.TabIndex = 6;
-            btn_down.Text = "v";
-            btn_down.UseVisualStyleBackColor = true;
-            btn_down.Click += btn_down_Click;
-            // 
-            // btn_up
-            // 
-            btn_up.Location = new Point(176, 442);
-            btn_up.Name = "btn_up";
-            btn_up.Size = new Size(68, 34);
-            btn_up.TabIndex = 7;
-            btn_up.Text = "^";
-            btn_up.UseVisualStyleBackColor = true;
-            btn_up.Click += btn_up_Click;
-            // 
-            // lbl_movepoint
-            // 
-            lbl_movepoint.AutoSize = true;
-            lbl_movepoint.Location = new Point(64, 445);
-            lbl_movepoint.Name = "lbl_movepoint";
-            lbl_movepoint.Size = new Size(106, 25);
-            lbl_movepoint.TabIndex = 8;
-            lbl_movepoint.Text = "Move Point:";
-            // 
             // Frm_MouseDummy
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -557,5 +570,6 @@
         private Label lbl_movepoint;
         private Button btn_up;
         private Button btn_down;
+        private RadioButton rdbtn_HoldRelease;
     }
 }

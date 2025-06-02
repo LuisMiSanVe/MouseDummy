@@ -28,7 +28,7 @@ namespace MouseDummy
         private const uint MOUSEEVENTF_WHEEL = 0x0800;
 
         // MouseDummy Methods
-        private int clickType = 1;
+        private string clickType = "1";
         private int actionDelay = 0;
         private bool keepLoop = true;
 
@@ -170,7 +170,10 @@ namespace MouseDummy
                 // Extract info from action
                 string action = lstbx_points.Items[i].ToString().Split(":")[1].Trim().Split(" ")[0];
                 if (action.Contains("Click"))
+                {
+                    clickType = action.Split("-")[0];
                     action = action.Split("-")[1];
+                }
                 string type = lstbx_points.Items[i].ToString().Split(":")[1].Trim().Split(" ")[1];
                 int x = int.Parse(lstbx_points.Items[i].ToString().Split("|")[1].Split(":")[0].Split("x")[0].Trim());
                 int y = int.Parse(lstbx_points.Items[i].ToString().Split("|")[1].Split(":")[0].Split("x")[1].Trim());
@@ -211,18 +214,36 @@ namespace MouseDummy
                         {
                             case "Left":
                                 SetCursorPos(x, y);
-                                mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
-                                mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+                                if (!clickType.Equals("Hold"))
+                                    for (int j = 0; j < int.Parse(clickType); j++)
+                                    {
+                                        mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
+                                        mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+                                    }
+                                else
+                                    mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
                                 break;
                             case "Middle":
                                 SetCursorPos(x, y);
-                                mouse_event(MOUSEEVENTF_MIDDLEDOWN, 0, 0, 0, 0);
-                                mouse_event(MOUSEEVENTF_MIDDLEUP, 0, 0, 0, 0);
+                                if (!clickType.Equals("Hold"))
+                                    for (int j = 0; j < int.Parse(clickType); j++)
+                                    {
+                                        mouse_event(MOUSEEVENTF_MIDDLEDOWN, 0, 0, 0, 0);
+                                        mouse_event(MOUSEEVENTF_MIDDLEUP, 0, 0, 0, 0);
+                                    }
+                                else
+                                    mouse_event(MOUSEEVENTF_MIDDLEDOWN, 0, 0, 0, 0);
                                 break;
                             case "Right":
                                 SetCursorPos(x, y);
-                                mouse_event(MOUSEEVENTF_RIGHTDOWN, 0, 0, 0, 0);
-                                mouse_event(MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
+                                if (!clickType.Equals("Hold"))
+                                    for (int j = 0; j < int.Parse(clickType); j++)
+                                    {
+                                        mouse_event(MOUSEEVENTF_RIGHTDOWN, 0, 0, 0, 0);
+                                        mouse_event(MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
+                                    }
+                                else
+                                    mouse_event(MOUSEEVENTF_RIGHTDOWN, 0, 0, 0, 0);
                                 break;
                             default:
                                 MessageBox.Show("An error occurred at running the point " + (i + 1) + "'s Action (" + type + ")", "Error running the secuence", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -252,6 +273,10 @@ namespace MouseDummy
                 // Delay between actions
                 Thread.Sleep(actionDelay);
             }
+            // Stop all the Hold processes
+            mouse_event(MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
+            mouse_event(MOUSEEVENTF_MIDDLEUP, 0, 0, 0, 0);
+            mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
             // Show the window and get focus
             this.Show();
             this.Focus();
@@ -263,6 +288,7 @@ namespace MouseDummy
             if (lstbx_points.SelectedItem != null)
             {
                 lstbx_points.Items.Remove(lstbx_points.SelectedItem);
+                
                 // Re-assign point number count
                 for (int i = 0; i < lstbx_points.Items.Count; i++)
                 {
@@ -286,13 +312,16 @@ namespace MouseDummy
             switch (((RadioButton)sender).Text)
             {
                 case "Single":
-                    clickType = 1;
+                    clickType = "1";
                     break;
                 case "Double":
-                    clickType = 2;
+                    clickType = "2";
                     break;
                 case "Triple":
-                    clickType = 3;
+                    clickType = "3";
+                    break;
+                case "Hold":
+                    clickType = "Hold";
                     break;
                 default:
                     MessageBox.Show("An error occurred at choosing the Click Type (" + ((RadioButton)sender).Text + ")", "Error setting the click type", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -422,7 +451,7 @@ namespace MouseDummy
                 {
                     // Temporally save the items content
                     string currentItem = lstbx_points.Items[lstbx_points.SelectedIndex].ToString();
-                    string upperItem = lstbx_points.Items[lstbx_points.SelectedIndex-1].ToString();
+                    string upperItem = lstbx_points.Items[lstbx_points.SelectedIndex - 1].ToString();
                     // Swap content with the item of above
                     lstbx_points.Items[lstbx_points.SelectedIndex] = upperItem;
                     lstbx_points.Items[lstbx_points.SelectedIndex - 1] = currentItem;
@@ -445,7 +474,7 @@ namespace MouseDummy
         {
             if (lstbx_points.SelectedItem != null)
             {
-                if (lstbx_points.SelectedIndex != lstbx_points.Items.Count-1)
+                if (lstbx_points.SelectedIndex != lstbx_points.Items.Count - 1)
                 {
                     // Temporally save the items content
                     string currentItem = lstbx_points.Items[lstbx_points.SelectedIndex].ToString();
