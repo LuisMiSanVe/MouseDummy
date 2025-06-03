@@ -74,6 +74,8 @@ namespace MouseDummy
                 // Clear the X and Y fields
                 txtbx_x.Text = "";
                 txtbx_y.Text = "";
+                // Select the copy
+                lstbx_points.SelectedIndex = lstbx_points.Items.Count - 1;
             }
             else
                 MessageBox.Show("Select the Point's X and Y first!", "Error adding point", MessageBoxButtons.OK, MessageBoxIcon.Warning);
