@@ -295,7 +295,11 @@ namespace MouseDummy
         private void btn_copy_Click(object sender, EventArgs e)
         {
             if (lstbx_points.SelectedItem != null)
+            {
                 lstbx_points.Items.Add("Point " + (lstbx_points.Items.Count + 1) + " | " + lstbx_points.SelectedItem.ToString().Split("|")[1].Split(":")[0].Trim() + ": No Action Assigned");
+                // Select the copy
+                lstbx_points.SelectedIndex = lstbx_points.Items.Count - 1;
+            }
             else
                 MessageBox.Show("Select the Point you want to copy first!", "Error coping the point", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
