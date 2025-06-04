@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using static System.Windows.Forms.AxHost;
 
 namespace MouseDummy
@@ -283,7 +284,7 @@ namespace MouseDummy
             if (lstbx_points.SelectedItem != null)
             {
                 lstbx_points.Items.Remove(lstbx_points.SelectedItem);
-                
+
                 // Re-assign point number count
                 for (int i = 0; i < lstbx_points.Items.Count; i++)
                 {
@@ -494,6 +495,20 @@ namespace MouseDummy
             }
             else
                 MessageBox.Show("Select the Point you want to move first!", "Error moving the point", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void cmbbx_savedSequences_TextChanged(object sender, EventArgs e)
+        {
+            // Delete the printed hotkey
+            cmbbx_savedSequences.Text = "";
+        }
+
+        private void txtbx_xy_TextChanged(object sender, EventArgs e)
+        {
+            // Validate if its a number
+            TextBox txtbx = (TextBox)sender;
+            if (!Regex.IsMatch(txtbx.Text, @"^\d*$"))
+                txtbx.Text = "";
         }
     }
 }

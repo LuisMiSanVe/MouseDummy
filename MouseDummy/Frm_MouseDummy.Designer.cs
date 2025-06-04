@@ -182,6 +182,7 @@
             cmbbx_savedSequences.Size = new Size(181, 33);
             cmbbx_savedSequences.TabIndex = 1;
             cmbbx_savedSequences.SelectedIndexChanged += cmbbx_savedSequences_SelectedIndexChanged;
+            cmbbx_savedSequences.TextChanged += cmbbx_savedSequences_TextChanged;
             // 
             // lstbx_points
             // 
@@ -283,6 +284,7 @@
             txtbx_x.Name = "txtbx_x";
             txtbx_x.Size = new Size(151, 31);
             txtbx_x.TabIndex = 1;
+            txtbx_x.TextChanged += txtbx_xy_TextChanged;
             // 
             // txtbx_y
             // 
@@ -291,6 +293,7 @@
             txtbx_y.Name = "txtbx_y";
             txtbx_y.Size = new Size(151, 31);
             txtbx_y.TabIndex = 0;
+            txtbx_y.TextChanged += txtbx_xy_TextChanged;
             // 
             // grpbx_action
             // 
