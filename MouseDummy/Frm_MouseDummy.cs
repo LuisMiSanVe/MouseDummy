@@ -165,9 +165,10 @@ namespace MouseDummy
             {
                 // Extract info from action
                 string action = lstbx_points.Items[i].ToString().Split(":")[1].Trim().Split(" ")[0];
+                string click = "";
                 if (action.Contains("Click"))
                 {
-                    clickType = action.Split("-")[0];
+                    click = action.Split("-")[0];
                     action = action.Split("-")[1];
                 }
                 string type = lstbx_points.Items[i].ToString().Split(":")[1].Trim().Split(" ")[1];
@@ -210,8 +211,8 @@ namespace MouseDummy
                         {
                             case "Left":
                                 SetCursorPos(x, y);
-                                if (!clickType.Equals("Hold"))
-                                    for (int j = 0; j < int.Parse(clickType); j++)
+                                if (!click.Equals("Hold"))
+                                    for (int j = 0; j < int.Parse(click); j++)
                                     {
                                         mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
                                         mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
@@ -221,8 +222,8 @@ namespace MouseDummy
                                 break;
                             case "Middle":
                                 SetCursorPos(x, y);
-                                if (!clickType.Equals("Hold"))
-                                    for (int j = 0; j < int.Parse(clickType); j++)
+                                if (!click.Equals("Hold"))
+                                    for (int j = 0; j < int.Parse(click); j++)
                                     {
                                         mouse_event(MOUSEEVENTF_MIDDLEDOWN, 0, 0, 0, 0);
                                         mouse_event(MOUSEEVENTF_MIDDLEUP, 0, 0, 0, 0);
@@ -232,8 +233,8 @@ namespace MouseDummy
                                 break;
                             case "Right":
                                 SetCursorPos(x, y);
-                                if (!clickType.Equals("Hold"))
-                                    for (int j = 0; j < int.Parse(clickType); j++)
+                                if (!click.Equals("Hold"))
+                                    for (int j = 0; j < int.Parse(click); j++)
                                     {
                                         mouse_event(MOUSEEVENTF_RIGHTDOWN, 0, 0, 0, 0);
                                         mouse_event(MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
