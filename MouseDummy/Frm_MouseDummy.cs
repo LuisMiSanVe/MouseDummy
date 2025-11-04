@@ -391,28 +391,23 @@ namespace MouseDummy
                         MessageBox.Show("The sequence couldn't be saved in your drive, make sure the installation path have the necessary permissions or start the program as Administrator.", "Permissions Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+                cmbbx_savedSequences.SelectedText = "";
             }
             else if (cmbbx_savedSequences.Items[cmbbx_savedSequences.SelectedIndex].ToString().Contains("+ New"))
             {
                 // Clear the current points
                 lstbx_points.Items.Clear();
+                cmbbx_savedSequences.SelectedText = "";
             }
             else if (cmbbx_savedSequences.Items[cmbbx_savedSequences.SelectedIndex].ToString().Contains("------"))
             {
                 // Does nothing as only serves as separator between options and actual saved sequences
+                cmbbx_savedSequences.SelectedText = "";
             }
             else
             {
-                // Clear the current points
-                lstbx_points.Items.Clear();
-
-                // Load from the file
-                string[] savedSequence = File.ReadAllText("SavedSequences\\" + cmbbx_savedSequences.SelectedItem + ".sqc").Split("\n");
-
-                lstbx_points.Items.AddRange(savedSequence);
+                cntxmnustrp_sequences.Show(Cursor.Position);
             }
-            cmbbx_savedSequences.SelectedText = "";
-
         }
 
         private void nmrupdwn_actionDelay_ValueChanged(object sender, EventArgs e)
@@ -510,6 +505,30 @@ namespace MouseDummy
             TextBox txtbx = (TextBox)sender;
             if (!Regex.IsMatch(txtbx.Text, @"^\d*$"))
                 txtbx.Text = "";
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to delete the saved sequence?\n" +
+                                "The program will restart afterwards.", "Deletion Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                File.Delete("SavedSequences\\" + cmbbx_savedSequences.SelectedItem + ".sqc");
+
+                lstbx_points.Items.Clear();
+
+                Application.Restart();
+            }
+        }
+
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Clear the current points
+            lstbx_points.Items.Clear();
+
+            // Load from the file
+            string[] savedSequence = File.ReadAllText("SavedSequences\\" + cmbbx_savedSequences.SelectedItem + ".sqc").Split("\n");
+
+            lstbx_points.Items.AddRange(savedSequence);
         }
     }
 }

@@ -68,11 +68,15 @@
             lbl_move = new Label();
             tmr_checkCoords = new System.Windows.Forms.Timer(components);
             tltp_help = new ToolTip(components);
+            cntxmnustrp_sequences = new ContextMenuStrip(components);
+            loadToolStripMenuItem = new ToolStripMenuItem();
+            deleteToolStripMenuItem = new ToolStripMenuItem();
             grpbx_points.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nmrupdwn_actionDelay).BeginInit();
             grpbx_pointSelector.SuspendLayout();
             grpbx_action.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nmrupdwn_gradualSmooth).BeginInit();
+            cntxmnustrp_sequences.SuspendLayout();
             SuspendLayout();
             // 
             // grpbx_points
@@ -503,6 +507,27 @@
             // 
             tmr_checkCoords.Tick += tmr_checkCoords_Tick;
             // 
+            // cntxmnustrp_sequences
+            // 
+            cntxmnustrp_sequences.ImageScalingSize = new Size(24, 24);
+            cntxmnustrp_sequences.Items.AddRange(new ToolStripItem[] { loadToolStripMenuItem, deleteToolStripMenuItem });
+            cntxmnustrp_sequences.Name = "cntxmnustrp_sequences";
+            cntxmnustrp_sequences.Size = new Size(241, 101);
+            // 
+            // loadToolStripMenuItem
+            // 
+            loadToolStripMenuItem.Name = "loadToolStripMenuItem";
+            loadToolStripMenuItem.Size = new Size(240, 32);
+            loadToolStripMenuItem.Text = "Load";
+            loadToolStripMenuItem.Click += loadToolStripMenuItem_Click;
+            // 
+            // deleteToolStripMenuItem
+            // 
+            deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            deleteToolStripMenuItem.Size = new Size(240, 32);
+            deleteToolStripMenuItem.Text = "Delete";
+            deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
+            // 
             // Frm_MouseDummy
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -530,6 +555,7 @@
             grpbx_action.ResumeLayout(false);
             grpbx_action.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)nmrupdwn_gradualSmooth).EndInit();
+            cntxmnustrp_sequences.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -573,5 +599,8 @@
         private Button btn_up;
         private Button btn_down;
         private RadioButton rdbtn_HoldRelease;
+        private ContextMenuStrip cntxmnustrp_sequences;
+        private ToolStripMenuItem loadToolStripMenuItem;
+        private ToolStripMenuItem deleteToolStripMenuItem;
     }
 }
