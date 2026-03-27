@@ -33,6 +33,9 @@ namespace MouseDummy
         private int actionDelay = 0;
         private bool keepLoop = true;
 
+        // Natural offset
+        private Random rnd = new Random();
+
         private void Frm_MouseDummy_Load(object sender, EventArgs e)
         {
             // Load the saved sequences in the ComboBox
@@ -196,6 +199,12 @@ namespace MouseDummy
                                     float t = (float)f / smoothness;
                                     int intermediateX = (int)(currentX + (x - currentX) * t);
                                     int intermediateY = (int)(currentY + (y - currentY) * t);
+
+                                    if (chk_natural.Checked && f < smoothness)
+                                    {
+                                        intermediateX = intermediateX + rnd.Next(-5, 6);
+                                        intermediateY = intermediateY + rnd.Next(-5, 6);
+                                    }
 
                                     SetCursorPos(intermediateX, intermediateY);
                                     Thread.Sleep(50);
